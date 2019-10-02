@@ -5,6 +5,7 @@
 
     public function __construct($host, $username, $password, $database){
       $this->con = mysqli_connect($host, $username, $password, $database, 3306);
+	  mysqli_set_charset($this->con,"utf8");
       if (!$this->con) {
         throw new Exception("Error Connecting to database");
       }

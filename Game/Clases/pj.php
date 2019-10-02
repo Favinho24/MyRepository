@@ -11,8 +11,9 @@ class pj
   private $hp;
   private $str;
   private $iq;
+  private $hp_max;
 
-  function __construct($idCharacter, $UserId, $n, $g, $h, $s, $i)
+  function __construct($idCharacter, $UserId, $n, $g, $h, $s, $i, $hm)
   {
     $this->id=$idCharacter;
     $this->id_usuario=$UserId;
@@ -21,6 +22,7 @@ class pj
     $this->hp=$h;
     $this->str=$s;
     $this->iq=$i;
+	$this->hp_max=$hm;
   }
   public function GetIdCharacter()
   {
@@ -50,6 +52,10 @@ class pj
   {
     return $this->iq;
   }
+  public function GetHP_Max()
+  {
+    return $this->hp_max;
+  }
   public function SetIdCharacter($idCharacter)
   {
     $this->id=$idCharacter;
@@ -77,6 +83,10 @@ class pj
   public function SetIQ($iq)
   {
     $this->iq=$iq;
+  }
+  public function SetHP_Max($hm)
+  {
+    $this->hp_max=$hm;
   }
   public function GetTodo()
   {

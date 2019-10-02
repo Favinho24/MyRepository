@@ -30,7 +30,7 @@
       <h1>Inicio de Sesión</h1>
         <form method="post" action="./php_calculate/login.php">
           <div class="inputs"><input class="user" type="text" name="usuario" placeholder='Usuario'><br></div>
-          <div class="inputs"><input class="pass" type="password" name="password" placeholder='Password'><br></div>
+          <div class="inputs"><input class="pass" type="password" name="password" placeholder='Password' ><br></div>
           <div class="inputs"><input type="submit" value="Ingresar" name='ingresar'></div>
         </form>
     </div>
