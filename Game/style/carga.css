@@ -61,10 +61,10 @@ animation-delay: .8s;
 	
 	position: fixed;
 	display: block;
-	top: 27%;
+	top: 32%;
 	left: 50%;
 	width: 300px;
-	height: 500px;
+	height: 280px;
 	border: 1px solid black;
 	
 }

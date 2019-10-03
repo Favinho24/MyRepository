@@ -27,11 +27,17 @@ function cargarTienda(pj){
 
 function Comprar(e){
     if(!estado){
+		console.log(e);
 		PCarga();
-        ajax("POST","./php_calculate/Compra.php",'idItem='+e,"Comprar(0)");
+        ajax("POST","./php_calculate/Compra.php",'idItem='+e+"&pj="+pj,"Comprar(0)");
         return;
     }else{
         estado = false;	
+		if(mensaje == 'errror'){
+			alert('Insuficientes Fondos');
+		}else{
+			alert('Compra Exitosa');
+		}
 		cargarTienda(wea);	
     }
 }
@@ -41,8 +47,8 @@ function Comprar(e){
 
 function PCarga() {
 	
-	document.getElementById('1c').style.height='30em';
-	document.getElementById('1c').innerHTML='<div id="preloader_1"><span></span><span></span><span></span><span></span><span></span></div>';
+	document.getElementById('1c').style.height='auto';
+	document.getElementById('1c').innerHTML='<div style="height:25em;"><div id="preloader_1"><span></span><span></span><span></span><span></span><span></span></div></div>';
 	//setTimeout(PCarga(), 2000);
 	//document.getElementById('1c').innerHTML='';
 	
@@ -67,6 +73,55 @@ function showI(i){
 }
 
 
+
+function Inventory(pj){
+	if(!estado){
+		objeto=null;
+		PCarga();
+        ajax("POST","./php_calculate/inventario.php",'pj='+pj,"Inventory(0)");
+        return;
+    }else{
+        estado = false;
+        try{
+			objeto = JSON.parse(mensaje);
+		}catch(error) {
+			alert("ERROR - Decode json objeto");
+			return;
+		}
+		//console.log(Object.keys(objeto).length);
+		setTimeout('constructorItems()', 2500);
+		//constructorItems();
+		
+    }	
+}
+
+function constructorItems() {
+	
+	var cadena = "<div class='flotador' id='flot8'></div>";
+	for(var i=0; i < objeto.length; i++){
+		cadena += "<div class='ListaTexto' onclick='showItem("+i+");' id='j_"+i+"'>"+objeto[i].nombre+"</div>";
+	}
+	document.getElementById('1c').innerHTML=cadena;
+	//document.getElementById('idul').style.height='160%';
+	var h = document.getElementById('j_0').clientHeight;
+	console.log(h);
+	h = h * Object.keys(objeto).length;
+	console.log(h);
+	h = 280+h;
+	console.log(h);
+	document.getElementById('1c').style.height=h+'px';
+	
+}
+
+var leon=null;
+function showItem(i){
+	if (leon!=null){
+	document.getElementById('j_'+leon).style.textDecoration='';
+	}
+	document.getElementById('j_'+i).style.textDecoration='underline';
+	document.getElementById('flot8').innerHTML='<h3 style="display:block; margin-Bottom:20px; text-align:center;font-family:Courier New;">'+objeto[i].nombre+'</h3><span class="l1">Daño: '+objeto[i].daño+'</span><span class="l1">Golpe Crítico: '+objeto[i].gc+'</span><span class="l1">Probabiilidad de Golpe Crítico: '+objeto[i].Prob_gc+'</span><span class="l1">Valor: $'+objeto[i].valor+'</span><span class="l1">Descripción: '+objeto[i].descripcion+'</span><span class="l1">Tipo: '+objeto[i].tipo+'</span>';	
+	leon=i;
+}
 
 //===================================================================================================================
 var mensaje;
@@ -103,7 +158,7 @@ function ajax2(metodo, direccion, parametros,fun){
         if (ajax_3.readyState == 4){
             mensaje2 = (ajax_3.responseText)
             if(mensaje2 == "error"){
-                alert("PHP - fallo");
+                alert("PHP - fallo 2");
                 return;
             }
             eval(fun);

@@ -14,6 +14,7 @@
 	 <script src="./JS/Multiplayer.js"></script>
 	 <script src="./JS/Tienda.js"></script>
      <script>
+
 		var pj=null;
 		var pjselectactual=null;
 		var Wa_id= '<?php echo $Wa->GetIdCharacter(); ?>';
@@ -37,6 +38,13 @@
 		function Multiplayer() {
 			if (pj != null) {
 				EnterMP(pj);
+			}else{
+				alert('Seleccione un Player');
+			}
+		}
+		function Inventario() {
+			if (pj != null) {
+				Inventory(pj);
 			}else{
 				alert('Seleccione un Player');
 			}
@@ -69,12 +77,16 @@
    <body>
      <div class="topBar"><p class="title">Inside the Shadows</p><img id="img1" src="./resources/img/Inside the Shadows.png" alt="RPG Game logo"></div>
      <div class="navBar">
-       <ul>
-         <li><a href="LogIN.php">Iniciar Sesión</a></li>
+       <ul id='ulNav' id='idul'>
+         <li><a href="LogIN.php" id='IS'>Iniciar Sesión</a></li>
          <li><a href="register.php">Registrarse</a></li>
          <li><a href="index.php">Acerca de</a></li>
          <li><a href="#">FAQ</a></li>
        </ul>
+	   <script>
+		document.getElementById('IS').innerHTML='Perfil';
+		document.getElementById('ulNav').style.marginLeft='50%';
+	   </script>
      </div>
      <div class="contenedor" id='1c'>
        <h1>Mi Perfil</h1>
@@ -103,6 +115,7 @@
      </div>
 	 
         <br><br><br><br>
+		<input class="myButton buttonInventario" type="button" name="inventario" value="Inventario" onclick="Inventario();">
         <input class="myButton buttonMultiplayer" type="button" name="multiplayer" value="Multiplayer" onclick="Multiplayer();">
         <input class="myButton buttonTienda" type="button" name="tienda" value="Tienda" onclick="Tienda();">
         <input class="myButton buttonExit" type="button" name="exit" value="Exit" onclick="CloseSession();">
