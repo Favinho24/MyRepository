@@ -13,24 +13,62 @@
      <script src="./JS/CloseSession.js"></script>
 	 <script src="./JS/Multiplayer.js"></script>
 	 <script src="./JS/Tienda.js"></script>
+   <script src="./JS/ReLIFE.js"></script>
      <script>
 
-		var pj=null;
-		var pjselectactual=null;
+     function dateDiff(date) {
+       var d = new Date();
+       var da = new Date(date);
+       if ((Math.floor((d-da) / (1000*60*60))) > 0 || date == '') {
+         return 'true';
+       }else {
+         return 'false';
+       }
+     }
+
+
+    var pj=null;
+ 		var pjselectactual=null;
+
 		var Wa_id= '<?php echo $Wa->GetIdCharacter(); ?>';
 		var Wa_nom= '<?php echo $Wa->GetNombre(); ?>';
 		var Wa_hp= '<?php echo $Wa->GetHP(); ?>';
 		var Wa_hp_max= '<?php echo $Wa->GetHP_Max(); ?>';
 		var Wa_str= '<?php echo $Wa->GetStr(); ?>';
 		var Wa_iq= '<?php echo $Wa->GetIQ(); ?>';
-		
+    var Wa_tiempo= '<?php echo $Wa->GetTiempo(); ?>';
+
+
 		var Wi_id= '<?php echo $Wi->GetIdCharacter(); ?>';
 		var Wi_nom= '<?php echo $Wi->GetNombre(); ?>';
 		var Wi_hp= '<?php echo $Wi->GetHP(); ?>';
 		var Wi_hp_max= '<?php echo $Wi->GetHP_Max(); ?>';
 		var Wi_str= '<?php echo $Wi->GetStr(); ?>';
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
-		
+    var Wi_tiempo= '<?php echo $Wi->GetTiempo(); ?>';
+
+    function disables() {
+      console.log(Wa_tiempo);
+      if ((dateDiff(Wa_tiempo)) == 'false'){
+        document.getElementById('f1').style.pointerEvents = "none";
+        document.getElementById('demoWa').innerHTML='espere 1 hora apartir de: '+ Wa_tiempo.substr(10, 6);
+      }else {
+        document.getElementById('f1').style.pointerEvents = "auto";
+        document.getElementById('demoWa').innerHTML='';
+        ReLIFE(Wa_id);
+      }
+
+      if ((dateDiff(Wi_tiempo)) == 'false'){
+        document.getElementById('f2').style.pointerEvents = "none";
+        document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+Wi_tiempo.substr(10, 6);
+      }else {
+        document.getElementById('f2').style.pointerEvents = "auto";
+        document.getElementById('demoWi').innerHTML='';
+        ReLIFE(Wi_id);
+      }
+    }
+
+
 		function CloseSession() {
 			ajax();
 			window.location="./index.php";
@@ -72,9 +110,13 @@
 			document.getElementById(idwea).style.border='1px solid red';
 			pjselectactual=idwea;
 		}
+
+
+
+
      </script>
    </head>
-   <body>
+   <body onload="disables()">
      <div class="topBar"><p class="title">Inside the Shadows</p><img id="img1" src="./resources/img/Inside the Shadows.png" alt="RPG Game logo"></div>
      <div class="navBar">
        <ul id='ulNav' id='idul'>
@@ -100,6 +142,7 @@
              Inteligencia: <?php echo $Wa->GetIQ(); ?>
           </p>
             <img style="margin:auto;" src="./resources/img/Warrior.png" alt="Warrior" height="120" width="100">
+            <p id='demoWa'></p>
         </div>
         <br>
         <div class="frame" id='f2' onclick='seleccionarpj(<?php echo $Wi->GetIdCharacter(); ?>, this.id);'>
@@ -112,12 +155,14 @@
              Inteligencia: <?php echo $Wi->GetIQ(); ?>
           </p>
           <img style="margin:auto;" src="./resources/img/Wizard.png" alt="Wizard" height="120" width="100">
+          <p id='demoWi'></p>
      </div>
-	 
+
         <br><br><br><br>
 		<input class="myButton buttonInventario" type="button" name="inventario" value="Inventario" onclick="Inventario();">
         <input class="myButton buttonMultiplayer" type="button" name="multiplayer" value="Multiplayer" onclick="Multiplayer();">
         <input class="myButton buttonTienda" type="button" name="tienda" value="Tienda" onclick="Tienda();">
         <input class="myButton buttonExit" type="button" name="exit" value="Exit" onclick="CloseSession();">
+
    </body>
  </html>

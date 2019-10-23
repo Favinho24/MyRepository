@@ -26,6 +26,7 @@
   $str='';
   $iq='';
   $hp_max='';
+  $tiempo='';
 
 
     while ($reg=mysqli_fetch_array($sel)) {
@@ -36,7 +37,8 @@
       $heal.='+'.$reg[4];
       $str.='+'.$reg[5];
       $iq.='+'.$reg[6];
-	  $hp_max.='+'.$reg[7];
+	    $hp_max.='+'.$reg[7];
+      $tiempo.='+'.$reg[8];
     }
     $ram=explode('+', $id);
     $y0=explode('+', $UserID);
@@ -45,14 +47,15 @@
     $y3=explode('+', $heal);
     $y4=explode('+', $str);
     $y5=explode('+', $iq);
-	$y6=explode('+', $hp_max);
-	
+	  $y6=explode('+', $hp_max);
+    $y7=explode('+', $tiempo);
+
 	$_SESSION['idPj'] = $ram[1];
 
     // echo $y1[2];
     if (strpos($y1[1], 'Warrior') && strpos($y1[2], 'Wizard')) {
-      $Wa = new pj($ram[1], $y0[1], $y1[1], $y2[1], $y3[1], $y4[1], $y5[1], $y6[1]);
-      $Wi = new pj($ram[2], $y0[2], $y1[2], $y2[2], $y3[2], $y4[2], $y5[2], $y6[2]);
+      $Wa = new pj($ram[1], $y0[1], $y1[1], $y2[1], $y3[1], $y4[1], $y5[1], $y6[1], $y7[1]);
+      $Wi = new pj($ram[2], $y0[2], $y1[2], $y2[2], $y3[2], $y4[2], $y5[2], $y6[2], $y7[2]);
     }
 
 

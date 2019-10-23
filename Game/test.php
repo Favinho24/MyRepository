@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="./style/contenedor.css">
     <link rel="icon" href="./resources/img/Inside the Shadows ico.ico">
     <script>
-      console.log(pj);
+      //console.log(pj);
+      var coso = document.getElementById('img1').innerHTML;
+      console.log(coso);
     </script>
   </head>
   <body>
@@ -20,8 +22,8 @@
       </ul>
     </div>
     <div class="contenedor">
-	
-	
+
+
       <div id='rival'>
 		<h3 style='text-align:center;' id='suPersonaje'>''</h3>
 		<div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div>
@@ -42,7 +44,7 @@
 		</div>
 	  </div>
     </div>
-	
-	
+
+
   </body>
 </html>
