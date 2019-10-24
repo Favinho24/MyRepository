@@ -1,5 +1,7 @@
 var wea='';
 var coso='';
+var log='';
+
 function EnterMP(pj){
     if(!estado){
 		coso = pj;
@@ -14,6 +16,7 @@ function EnterMP(pj){
 }
 
 var bo=true;
+
 
 function Buscar(mensajex){
 	if(!estado){
@@ -41,10 +44,13 @@ function Buscar(mensajex){
 			}else{
 				setTimeout("Buscar("+wea+");", 3000);
 			}
-			
-			document.getElementById('VidaEl').innerHTML = objeto.vidaEnemigo;
-			document.getElementById('VidaYo').innerHTML = objeto.vida;
-			
+
+	
+			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
+			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
+			if (objeto.log != null){
+				document.getElementById('logPanel').innerHTML=document.getElementById('logPanel').innerHTML+'<br>'+'Te'+objeto.log;
+			}
 			
 		}else if(objeto.estado == 'Found'){
 			document.getElementById('inputA').disabled=true;
@@ -54,30 +60,39 @@ function Buscar(mensajex){
 			}else{
 				setTimeout("Buscar("+wea+");", 3000);
 			}
+			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
+			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
+			if (objeto.log != null){
+				document.getElementById('logPanel').innerHTML=document.getElementById('logPanel').innerHTML+'<br>'+'Se'+objeto.log;
+			}
 			
-			document.getElementById('VidaEl').innerHTML = objeto.vidaEnemigo;
-			document.getElementById('VidaYo').innerHTML = objeto.vida;
 		}else{
 			setTimeout("Buscar("+wea+");", 3000);
 		}
 		console.log(objeto);
-     
-    }
+	}
 }
 
+function calcItemVida(vida, largo) {
+	var vidaactual = vida.substring(0, vida.indexOf('/'));
+	var vidatotal = vida.substring(vida.indexOf('/')+1, 7);
+	var barVida;
+	barVida = (vidaactual * largo)/vidatotal;
+	return barVida;
+}
 
 
 function GenerarEntorno(ac){
 	
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'></span></span></div><br><div style='display:block;'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack'>"+ac+"</select></div><br></div></div></div>";
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'></span></span></div><br><div style='display:block;'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack'>"+ac+"</select></div><br></div></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
-		document.getElementById('VidaYo').innerHTML=Wa_hp;
+		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';
 		document.getElementById('FuerzaYo').innerHTML=Wa_str;
 		document.getElementById('IQYo').innerHTML=Wa_iq;
 	}else if(Wi_id==pj){
 		document.getElementById('miPersonaje').innerHTML=Wi_nom;
-		document.getElementById('VidaYo').innerHTML=Wi_hp;
+		document.getElementById('VidaYoID').style.width = calcItemVida(Wi_hp+'/'+Wi_hp_max, 400) + 'px';
 		document.getElementById('FuerzaYo').innerHTML=Wi_str;
 		document.getElementById('IQYo').innerHTML=Wi_iq;
 	}
@@ -121,7 +136,7 @@ function Enemy(csa, go){
 			alert("Error - decode json");
 		}
 		
-		document.getElementById('VidaEl').innerHTML=datos.hp;
+		//document.getElementById('VidaEl').innerHTML=datos.hp;
 		document.getElementById('suPersonaje').innerHTML=datos.nombre;
 		opa=datos.id;
 		setTimeout("Buscar("+wea+");", 1);
@@ -135,9 +150,9 @@ function atacar(){
         return;
     }else{
         estado2 = false;
-		console.log(mensaje2);
-		document.getElementById('log').innerHTML=mensaje2;
-		
+		//console.log(log);
+		//log =mensaje2;
+
 		setTimeout("Buscar("+wea+");", 1);
     }
 }

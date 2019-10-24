@@ -1,5 +1,5 @@
 <?php
-  
+
 	ob_start();
 	session_start();
 	require ('../Clases/Usuario.php');
@@ -31,18 +31,43 @@
 		echo 'error';
 		exit;
 	}
-	
+
 	$database = new DatabaseObject($host, $username, $password, $database);
-  
+
 	hacerDaño();
-  
+
 	function hacerDaño(){
-	
+
+    function AcabarTurno($Log){
+      global $database, $idLog;
+
+      $idUsuario1='';
+      $idUsuario2='';
+      $UsuarioTurno='';
+      $vin=$database->query("SELECT idUsuario1, idUsuario2, UsuarioTurno, `log` FROM vinculo WHERE idLog='".$idLog."';");
+
+      while ($reg=mysqli_fetch_array($vin)) {
+        $idUsuario1=$reg['idUsuario1'];
+        $idUsuario2=$reg['idUsuario2'];
+        $UsuarioTurno=$reg['UsuarioTurno'];
+      }
+
+      if($UsuarioTurno == $idUsuario1){
+        $database->query("UPDATE vinculo SET UsuarioTurno='".$idUsuario2."', `log`='".$Log."' WHERE idLog='".$idLog."';");
+      }else{
+        $database->query("UPDATE vinculo SET UsuarioTurno='".$idUsuario1."', `log`='".$Log."' WHERE idLog='".$idLog."';");
+      }
+    }
+
+
+
+
+
 		global $database, $idp2, $option, $idp1, $idLog;
-		
+
 		$vin=$database->query("SELECT daño, gc, prob_gc, Tipo FROM habilidades WHERE name='".$option."';");
 
-		$daño='';
+		global $daño;
 		$gc='';
 		$prob_gc='';
 		$tipo='';
@@ -57,77 +82,55 @@
 			$prob_gc = $reg['prob_gc'];
 			$tipo=$reg['Tipo'];
 		}
-		
+
 		$vin=$database->query("SELECT hp, hp_max FROM pj WHERE id='".$idp2."';");
-	
-		
+
+
 		while ($reg=mysqli_fetch_array($vin)) {
 			$hp=$reg['hp'];
 			$hp_max=$reg['hp_max'];
 		}
-		
+
 		$vin=$database->query("SELECT str, iq FROM pj WHERE id='".$idp1."';");
-	
-		
+
+
 		while ($reg=mysqli_fetch_array($vin)) {
 			$str=$reg['str'];
 			$iq=$reg['iq'];
 		}
-		
+
 		if ($tipo == 'Arma'){
 			$daño=$daño+$str;
 		}else if($tipo == 'Hechizo'){
 			$daño=$daño+$iq;
 		}
-		
-		
+
+
 		$pro=rand(1, 1000);
 		$ev=rand(1, 100);
 
 		if ($prob_gc >= $pro){
 			$daño=$daño+$gc;
 		}
-		
+
 		if(10 >= $ev){
 			echo 'Miss';
+      AcabarTurno('Miss');
 			exit;
 		}
-		
-		
-		
-		$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
-		
-		$idUsuario1='';
-		$idUsuario2='';
-		$UsuarioTurno='';
-		$vin=$database->query("SELECT idUsuario1, idUsuario2, UsuarioTurno FROM vinculo WHERE idLog='".$idLog."';");
-	
-		
-		while ($reg=mysqli_fetch_array($vin)) {
-			$idUsuario1=$reg['idUsuario1'];
-			$idUsuario2=$reg['idUsuario2'];
-			$UsuarioTurno=$reg['UsuarioTurno'];
-		}
-		
-		if($UsuarioTurno == $idUsuario1){
-			$database->query("UPDATE vinculo SET UsuarioTurno='".$idUsuario2."' WHERE idLog='".$idLog."';");
-		}else{
-			$database->query("UPDATE vinculo SET UsuarioTurno='".$idUsuario1."' WHERE idLog='".$idLog."';");
-		}
-	
-		echo 'Se hicieron '.$daño.' puntos de daño';
+
+    $database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
+    AcabarTurno(' hicieron '.$daño.' puntos de daño');
+		echo ' hicieron '.$daño.' puntos de daño';
 		exit;
-		
-		
+
+
+
 	}
 
 
 
- /*Hacer un trigger que verifique la no duplicacion de los nombres de ataques*/ 
- 
+
+ /*Hacer un trigger que verifique la no duplicacion de los nombres de ataques*/
+
  ?>
- 
- 
- 
- 
- 
