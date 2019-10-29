@@ -17,17 +17,19 @@
      <script>
 
      function dateDiff(date) {
-       var d = new Date();
-       var da = new Date(date);
-       if ((Math.floor((d-da) / (1000*60*60))) > 0 || date == '') {
-         return 'true';
-       }else {
-         return 'false';
-       }
+        var d = new Date();
+        var da = new Date(date);
+        if ((Math.floor((d-da) / (1000*60*60))) > 0 || date == '') {
+          return 'true';
+        }else {
+          return 'false';
+        }
        //return 'true';
      }
 
-
+	
+	
+	
     var pj=null;
  		var pjselectactual=null;
 
@@ -48,27 +50,28 @@
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
     var Wi_tiempo= '<?php echo $Wi->GetTiempo(); ?>';
 
-    function disables() {
-      console.log(Wa_tiempo);
-      if ((dateDiff(Wa_tiempo)) == 'false'){
-        document.getElementById('f1').style.pointerEvents = "none";
-        document.getElementById('demoWa').innerHTML='espere 1 hora apartir de: '+ Wa_tiempo.substr(10, 6);
-      }else {
-        document.getElementById('f1').style.pointerEvents = "auto";
-        document.getElementById('demoWa').innerHTML='';
-        ReLIFE(Wa_id);
-      }
+    
+	function disables() {
+		  //console.log(Wi_id);
 
-      if ((dateDiff(Wi_tiempo)) == 'false'){
-        document.getElementById('f2').style.pointerEvents = "none";
-        document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+Wi_tiempo.substr(10, 6);
-      }else {
-        document.getElementById('f2').style.pointerEvents = "auto";
-        document.getElementById('demoWi').innerHTML='';
-        ReLIFE(Wi_id);
-      }
+		  if ((dateDiff(Wa_tiempo)) == 'false'){
+			document.getElementById('f1').style.pointerEvents = "none";
+			document.getElementById('demoWa').innerHTML='espere 1 hora apartir de: '+ Wa_tiempo.substr(10, 6);
+				if ((dateDiff(Wi_tiempo)) == 'false'){
+					document.getElementById('f2').style.pointerEvents = "none";
+					document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+ Wi_tiempo.substr(10, 6);
+				}else {
+					document.getElementById('f2').style.pointerEvents = "auto";
+					document.getElementById('demoWi').innerHTML='';
+					ReLIFE2(Wi_id);
+				}
+		  }else {
+			document.getElementById('f1').style.pointerEvents = "auto";
+			document.getElementById('demoWa').innerHTML='';
+			ReLIFE(Wa_id);	
+			}
     }
-
+		
 
 		function CloseSession() {
 			ajax();
@@ -137,7 +140,7 @@
           <p>
              Nombre: <?php echo $Wa->GetNombre(); ?> <br><br>
              Oro: <?php echo $Wa->GetGold(); ?> <br><br>
-             HP: <?php echo $Wa->GetHP(); ?> <br><br>
+             <span id='hpWa'>HP: <?php echo $Wa->GetHP(); ?> </span><br><br>
 			 Vida Máxima: <?php echo $Wa->GetHP_Max(); ?><br><br>
              Fuerza: <?php echo $Wa->GetStr(); ?> <br><br>
              Inteligencia: <?php echo $Wa->GetIQ(); ?>
@@ -150,7 +153,7 @@
           <p>
              Nombre: <?php echo $Wi->GetNombre(); ?> <br><br>
              Oro: <?php echo $Wi->GetGold(); ?> <br><br>
-             HP: <?php echo $Wi->GetHP(); ?> <br><br>
+             <span id='hpWi'>HP: <?php echo $Wi->GetHP(); ?> </span><br><br>
 			 Vida Máxima: <?php echo $Wi->GetHP_Max(); ?><br><br>
              Fuerza: <?php echo $Wi->GetStr(); ?> <br><br>
              Inteligencia: <?php echo $Wi->GetIQ(); ?>

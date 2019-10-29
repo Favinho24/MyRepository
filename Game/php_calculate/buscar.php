@@ -20,6 +20,12 @@
 
 	$database = new DatabaseObject($host, $username, $password, $database);
 	$vin=$database->query("SELECT * FROM vinculo WHERE `idLog`=".$men."");
+	//echo json_encode($vin);
+	//if (json_encode($vin) == {"current_field":null,"field_count":null,"lengths":null,"num_rows":null,"type":null}{"estado":"wait","vida":"999\/999","vidaEnemigo":"Sin cargar\/Sin cargar","log":null}) {
+	//	echo 'Huyo';
+	//	exit;
+	//}
+
 
 	$id1='';
 	$id2='';
@@ -86,8 +92,8 @@
 		}
 
 
-		$hp = "Sin cargar";
-		$hp_m = "Sin cargar";
+		$hp = "";
+		$hp_m = "";
 		while ($reg=mysqli_fetch_array($vin)) {
 			$hp= $reg["hp"];
 			$hp_m = $reg["hp_max"];

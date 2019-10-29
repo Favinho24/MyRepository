@@ -114,13 +114,22 @@
 		}
 
 		if(10 >= $ev){
-			echo 'Miss';
-      AcabarTurno('Miss');
+			echo ' ha Evadido';
+      AcabarTurno(' ha Evadido');
 			exit;
 		}
 
-    $database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
-    AcabarTurno(' hicieron '.$daño.' puntos de daño');
+		if (($hp - $daño) < 0) {
+			echo ' oponente muerto';
+			$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
+			$database->query("UPDATE pj SET gold=gold+100 WHERE id=".$idp1.";");
+			AcabarTurno(' oponente muerto');
+			exit;
+		}
+
+
+		$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
+		AcabarTurno(' hicieron '.$daño.' puntos de daño');
 		echo ' hicieron '.$daño.' puntos de daño';
 		exit;
 

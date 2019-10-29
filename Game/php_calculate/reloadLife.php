@@ -13,5 +13,5 @@ $database = new DatabaseObject($host, $username, $password, $database);
   }
 
   $database->query("UPDATE pj SET hp=hp_max where id='".$idpj."';");
-
+  
  ?>
