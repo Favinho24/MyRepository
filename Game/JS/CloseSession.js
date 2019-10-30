@@ -1,46 +1,19 @@
-function ajax(){
+var delete_cookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 
-	ajax2 = objetoAjax();
-	ajax2.open("POST", "./php_calculate/CloseSession.php", true);
-	ajax2.onreadystatechange = function() {
-		if (ajax2.readyState == 4){
-			mensaje = (ajax2.responseText)
-
-      if(mensaje == "error"){
-        console.log("Algo salió mal");
-        console.log(mensaje);
+function ajax7(){
+    if(!estado){
+        ajax("POST","./php_calculate/CloseSession.php","ajax7(0)");
+		//delete_cookie('PHPSESSID');
+		//console.log('wea');
         return;
-      }
-
-
-			console.log(mensaje);
-
-		}
-	}
-	ajax2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	ajax2.send();
-	return;
+    }else{
+        estado = false;
+    }
 }
 
 
 
 
 
-
-function objetoAjax(){
-	var xmlhttp = false;
-	try {
-		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch (e) {
-
-		try {
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (E) {
-			xmlhttp = false; }
-	}
-
-	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-	  xmlhttp = new XMLHttpRequest();
-	}
-	return xmlhttp;
-}

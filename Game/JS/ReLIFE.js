@@ -5,17 +5,9 @@ function ReLIFE(id){
         return;
     }else{
         estado3 = false;
+		document.getElementById('hpWa').innerHTML='HP: '+mensaje3;
 		//console.log(id);
-		if ((dateDiff(Wi_tiempo)) == 'false'){
-        document.getElementById('f2').style.pointerEvents = "none";
-        document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+ Wi_tiempo.substr(10, 6);
-      }else {
-        document.getElementById('f2').style.pointerEvents = "auto";
-        document.getElementById('demoWi').innerHTML='';
-        ReLIFE2(Wi_id);
-      }
-
-
+		WiLife();
     }
 }
 
@@ -26,6 +18,7 @@ function ReLIFE2(id){
         return;
     }else{
         estado3 = false;
+		document.getElementById('hpWi').innerHTML='HP: '+mensaje3;
 		//location.reload(true);
     }
 }

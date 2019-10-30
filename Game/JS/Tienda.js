@@ -143,7 +143,7 @@ function ajax(metodo, direccion, parametros,fun){
         }
     }
     ajax_2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    ajax_2.send(parametros)
+    ajax_2.send(parametros);
     return;
 }
 var mensaje2;

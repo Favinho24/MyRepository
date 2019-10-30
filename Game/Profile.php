@@ -19,9 +19,11 @@
      function dateDiff(date) {
         var d = new Date();
         var da = new Date(date);
-        if ((Math.floor((d-da) / (1000*60*60))) > 0 || date == '') {
+        if ((Math.floor((d-da) / (1000*60*60))) > 0 ) {
           return 'true';
-        }else {
+		}else if(date == '') {
+			return 'sinDatos';
+		}else {
           return 'false';
         }
        //return 'true';
@@ -50,31 +52,36 @@
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
     var Wi_tiempo= '<?php echo $Wi->GetTiempo(); ?>';
 
-    
+    function WiLife(){
+		if ((dateDiff(Wi_tiempo)) == 'false'){
+			document.getElementById('f2').style.pointerEvents = "none";
+			document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+ Wi_tiempo.substr(10, 6);
+		}else if((dateDiff(Wa_tiempo)) == 'true'){
+			document.getElementById('f2').style.pointerEvents = "auto";
+			document.getElementById('demoWi').innerHTML='';
+			ReLIFE2(Wi_id);
+		}
+	}
+	
 	function disables() {
-		  //console.log(Wi_id);
+		  //console.log(dateDiff(Wa_tiempo));
 
 		  if ((dateDiff(Wa_tiempo)) == 'false'){
 			document.getElementById('f1').style.pointerEvents = "none";
 			document.getElementById('demoWa').innerHTML='espere 1 hora apartir de: '+ Wa_tiempo.substr(10, 6);
-				if ((dateDiff(Wi_tiempo)) == 'false'){
-					document.getElementById('f2').style.pointerEvents = "none";
-					document.getElementById('demoWi').innerHTML='espere 1 hora apartir de: '+ Wi_tiempo.substr(10, 6);
-				}else {
-					document.getElementById('f2').style.pointerEvents = "auto";
-					document.getElementById('demoWi').innerHTML='';
-					ReLIFE2(Wi_id);
-				}
-		  }else {
+			WiLife();
+		  }else if((dateDiff(Wa_tiempo)) == 'true'){
 			document.getElementById('f1').style.pointerEvents = "auto";
 			document.getElementById('demoWa').innerHTML='';
 			ReLIFE(Wa_id);	
-			}
+		  }else if((dateDiff(Wa_tiempo)) == 'sinDatos'){
+			WiLife();
+		  }
     }
 		
 
 		function CloseSession() {
-			ajax();
+			ajax7();
 			window.location="./index.php";
 		}
 		function Multiplayer() {
@@ -116,11 +123,11 @@
 		}
 
 
-
+ 
 
      </script>
    </head>
-   <body onload="disables()">
+   <body onload="disables();">
      <div class="topBar"><p class="title">Inside the Shadows</p><img id="img1" src="./resources/img/Inside the Shadows.png" alt="RPG Game logo"></div>
      <div class="navBar">
        <ul id='ulNav' id='idul'>
