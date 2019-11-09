@@ -29,9 +29,9 @@
        //return 'true';
      }
 
-	
-	
-	
+
+
+
     var pj=null;
  		var pjselectactual=null;
 
@@ -40,7 +40,7 @@
 		var Wa_hp= '<?php echo $Wa->GetHP(); ?>';
 		var Wa_hp_max= '<?php echo $Wa->GetHP_Max(); ?>';
 		var Wa_str= '<?php echo $Wa->GetStr(); ?>';
-		var Wa_iq= '<?php echo $Wa->GetIQ(); ?>';
+		//var Wa_iq= '';
     var Wa_tiempo= '<?php echo $Wa->GetTiempo(); ?>';
 
 
@@ -48,7 +48,7 @@
 		var Wi_nom= '<?php echo $Wi->GetNombre(); ?>';
 		var Wi_hp= '<?php echo $Wi->GetHP(); ?>';
 		var Wi_hp_max= '<?php echo $Wi->GetHP_Max(); ?>';
-		var Wi_str= '<?php echo $Wi->GetStr(); ?>';
+		//var Wi_str= '';
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
     var Wi_tiempo= '<?php echo $Wi->GetTiempo(); ?>';
 
@@ -62,7 +62,7 @@
 			ReLIFE2(Wi_id);
 		}
 	}
-	
+
 	function disables() {
 		  //console.log(dateDiff(Wa_tiempo));
 
@@ -73,12 +73,12 @@
 		  }else if((dateDiff(Wa_tiempo)) == 'true'){
 			document.getElementById('f1').style.pointerEvents = "auto";
 			document.getElementById('demoWa').innerHTML='';
-			ReLIFE(Wa_id);	
+			ReLIFE(Wa_id);
 		  }else if((dateDiff(Wa_tiempo)) == 'sinDatos'){
 			WiLife();
 		  }
     }
-		
+
 
 		function CloseSession() {
 			ajax7();
@@ -123,7 +123,7 @@
 		}
 
 
- 
+
 
      </script>
    </head>
@@ -148,9 +148,8 @@
              Nombre: <?php echo $Wa->GetNombre(); ?> <br><br>
              Oro: <?php echo $Wa->GetGold(); ?> <br><br>
              <span id='hpWa'>HP: <?php echo $Wa->GetHP(); ?> </span><br><br>
-			 Vida Máxima: <?php echo $Wa->GetHP_Max(); ?><br><br>
+			       Vida Máxima: <?php echo $Wa->GetHP_Max(); ?><br><br>
              Fuerza: <?php echo $Wa->GetStr(); ?> <br><br>
-             Inteligencia: <?php echo $Wa->GetIQ(); ?>
           </p>
             <img style="margin:auto;" src="./resources/img/Warrior.png" alt="Warrior" height="120" width="100">
             <p id='demoWa'></p>
@@ -161,8 +160,7 @@
              Nombre: <?php echo $Wi->GetNombre(); ?> <br><br>
              Oro: <?php echo $Wi->GetGold(); ?> <br><br>
              <span id='hpWi'>HP: <?php echo $Wi->GetHP(); ?> </span><br><br>
-			 Vida Máxima: <?php echo $Wi->GetHP_Max(); ?><br><br>
-             Fuerza: <?php echo $Wi->GetStr(); ?> <br><br>
+			       Vida Máxima: <?php echo $Wi->GetHP_Max(); ?><br><br>
              Inteligencia: <?php echo $Wi->GetIQ(); ?>
           </p>
           <img style="margin:auto;" src="./resources/img/Wizard.png" alt="Wizard" height="120" width="100">

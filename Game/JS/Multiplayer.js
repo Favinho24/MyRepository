@@ -34,7 +34,7 @@ function Buscar(mensajex){
 			console.log("Fallo - decodificar json");
 			return;
 		}
-		
+
 		if(objeto.estado == 'wait'){
 			//console.log('espere');
 			setTimeout("Buscar("+wea+");", 3000);
@@ -48,7 +48,7 @@ function Buscar(mensajex){
 				setTimeout("Buscar("+wea+");", 3000);
 			}
 
-			
+
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
@@ -65,7 +65,7 @@ function Buscar(mensajex){
 				alert('Haz Muerto');
 				location.reload(true);
 			}
-			
+
 		}else if(objeto.estado == 'Found'){
 			document.getElementById('inputA').disabled=true;
 			document.getElementById('huirButton').disabled=true;
@@ -78,10 +78,10 @@ function Buscar(mensajex){
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
-			
+
 			if (objeto.log != null){
 				if (((document.getElementById('logPanel').innerHTML).split('<br>', 10000))[((document.getElementById('logPanel').innerHTML).split('<br>', 10000)).length-1] != 'Se'+objeto.log) {
-					document.getElementById('logPanel').innerHTML=document.getElementById('logPanel').innerHTML+'<br>'+'Se'+objeto.log;		
+					document.getElementById('logPanel').innerHTML=document.getElementById('logPanel').innerHTML+'<br>'+'Se'+objeto.log;
 				}
 			}
 			if (objeto.log == ' Huyo') {
@@ -92,7 +92,7 @@ function Buscar(mensajex){
 				alert('Ha Muerto Tu Oponente');
 				location.reload(true);
 			}
-			
+
 		}else{
 			setTimeout("Buscar("+wea+");", 3000);
 		}
@@ -109,24 +109,25 @@ function calcItemVida(vida, largo) {
 }
 
 function Lobby() {
+  //Huir();
 	location.reload(true);
 }
 
 
 function GenerarEntorno(ac){
-	
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'></div><br></div></div></div>";
+
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'></div><br></div></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';
 		document.getElementById('miVida').innerHTML = Wa_hp+'/'+Wa_hp_max;
 		document.getElementById('FuerzaYo').innerHTML=Wa_str;
-		document.getElementById('IQYo').innerHTML=Wa_iq;
+		document.getElementById('iqtxt').innerHTML='';
 	}else if(Wi_id==pj){
 		document.getElementById('miPersonaje').innerHTML=Wi_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wi_hp+'/'+Wi_hp_max, 400) + 'px';
 		document.getElementById('miVida').innerHTML = Wi_hp+'/'+Wi_hp_max;
-		document.getElementById('FuerzaYo').innerHTML=Wi_str;
+		document.getElementById('strtxt').innerHTML='';
 		document.getElementById('IQYo').innerHTML=Wi_iq;
 	}
 
@@ -139,16 +140,16 @@ function CargarDatos(ese){
         return;
     }else{
         estado = false;
-		
+
 		var datos = "";
 		try{
 			datos = JSON.parse(mensaje);
 		}catch(error){
 			alert("Error - decode json");
 		}
-		
+
 		//console.log(datos);
-		
+
 		GenerarEntorno(datos.armas);
     }
 }
@@ -168,7 +169,7 @@ function Enemy(csa, go){
 		}catch(error){
 			alert("Error - decode json");
 		}
-		
+
 		//document.getElementById('VidaEl').innerHTML=datos.hp;
 		document.getElementById('suPersonaje').innerHTML=datos.nombre;
 		opa=datos.id;
@@ -184,7 +185,7 @@ function atacar(){
     }else{
         estado2 = false;
 		//console.log(log);
-		//log =mensaje2;	
+		//log =mensaje2;
 		setTimeout("Buscar("+wea+");", 1);
     }
 }
@@ -198,4 +199,3 @@ function Huir(){
 		//setTimeout("Buscar("+wea+");", 1);
     }
 }
-
