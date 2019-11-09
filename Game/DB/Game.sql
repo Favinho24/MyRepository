@@ -153,8 +153,8 @@ CREATE TABLE `Usuario` (
 -- Volcado de datos para la tabla `Usuario`
 --
 
-INSERT INTO `Usuario` (`id`, `nombre`, `pass`) VALUES
-(29, 'Favio24', '25f9e794323b453885f5181f1b624d0b'),
+INSERT INTO `Usuario` (`id`, `nombre`, `pass`, `photo`) VALUES
+(29, 'Favio24', '25f9e794323b453885f5181f1b624d0b', NULL),
 (35, 'Tomas', '25f9e794323b453885f5181f1b624d0b', NULL),
 (36, 'favinho', '25f9e794323b453885f5181f1b624d0b', NULL);
 
@@ -185,12 +185,6 @@ CREATE TABLE `vinculo` (
   `log` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `vinculo`
---
-
-INSERT INTO `vinculo` (`idLog`, `idUsuario1`, `idUsuario2`, `idPj1`, `idPj2`, `UsuarioTurno`, `log`) VALUES
-(366, 36, 0, 30, 0, 0, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -272,7 +266,3 @@ ALTER TABLE `vinculo`
 ALTER TABLE `pj`
   ADD CONSTRAINT `fk_pj_Usuario` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
