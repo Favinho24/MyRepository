@@ -113,10 +113,16 @@ function Lobby() {
 	location.reload(true);
 }
 
+function InfoAttacks() {
+	var e = document.getElementById('selectAtack');
+	var e = e.options[e.selectedIndex].text;
+	AttacksInfo(e);
+}
+
 
 function GenerarEntorno(ac){
 
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'></div><br></div></div></div>";
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'></div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';
