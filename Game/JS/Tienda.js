@@ -66,8 +66,10 @@ var leon=null;
 function showI(i){
 	if (leon!=null){
 	document.getElementById('h_'+leon).style.textDecoration='';
+	document.getElementById('h_'+leon).style.color='black';
 	}
 	document.getElementById('h_'+i).style.textDecoration='underline';
+	document.getElementById('h_'+i).style.color='white';
 	document.getElementById('flot1').innerHTML='<h3 style="display:block; margin-Bottom:20px; text-align:center;font-family:Courier New;">'+objeto[i].nombre+'</h3><span class="l1">Daño: '+objeto[i].daño+'</span><span class="l1">Golpe Crítico: '+objeto[i].gc+'</span><span class="l1">Probabiilidad de Golpe Crítico: '+objeto[i].Prob_gc+'%</span><span class="l1">Valor: $'+objeto[i].valor+'</span><span class="l1">Descripción: '+objeto[i].descripcion+'</span><span class="l1">Tipo: '+objeto[i].tipo+'</span><input style="display: block;position: relative; margin: auto;" type="button" value="Comprar" onclick="Comprar('+objeto[i].id+');">';
 	leon=i;
 }
@@ -117,8 +119,10 @@ var leon=null;
 function showItem(i){
 	if (leon!=null){
 	document.getElementById('j_'+leon).style.textDecoration='';
+	document.getElementById('j_'+leon).style.color='black';
 	}
 	document.getElementById('j_'+i).style.textDecoration='underline';
+	document.getElementById('j_'+i).style.color='white';
 	document.getElementById('flot8').innerHTML='<h3 style="display:block; margin-Bottom:20px; text-align:center;font-family:Courier New;">'+objeto[i].nombre+'</h3><span class="l1">Daño: '+objeto[i].daño+'</span><span class="l1">Golpe Crítico: '+objeto[i].gc+'</span><span class="l1">Probabiilidad de Golpe Crítico: '+objeto[i].Prob_gc+'</span><span class="l1">Valor: $'+objeto[i].valor+'</span><span class="l1">Descripción: '+objeto[i].descripcion+'</span><span class="l1">Tipo: '+objeto[i].tipo+'</span>';
 	leon=i;
 }

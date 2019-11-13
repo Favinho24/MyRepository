@@ -26,7 +26,9 @@
   $or='';
   $heal='';
   $str='';
+  $arm='';
   $iq='';
+  $rMag='';
   $hp_max='';
   $tiempo='';
 
@@ -38,9 +40,11 @@
       $or.='+'.$reg[3];
       $heal.='+'.$reg[4];
       $str.='+'.$reg[5];
-      $iq.='+'.$reg[6];
-	    $hp_max.='+'.$reg[7];
-      $tiempo.='+'.$reg[8];
+      $arm.='+'.$reg[6];
+      $iq.='+'.$reg[7];
+      $rMag.='+'.$reg[8];
+	    $hp_max.='+'.$reg[9];
+      $tiempo.='+'.$reg[10];
     }
     $ram=explode('+', $id);
     $y0=explode('+', $UserID);
@@ -48,16 +52,18 @@
     $y2=explode('+', $or);
     $y3=explode('+', $heal);
     $y4=explode('+', $str);
-    $y5=explode('+', $iq);
-	  $y6=explode('+', $hp_max);
-    $y7=explode('+', $tiempo);
+    $y5=explode('+', $arm);
+    $y6=explode('+', $iq);
+    $y7=explode('+', $rMag);
+	  $y8=explode('+', $hp_max);
+    $y9=explode('+', $tiempo);
 
 	$_SESSION['idPj'] = $ram[1];
 
     // echo $y1[2];
     if (strpos($y1[1], 'Warrior') && strpos($y1[2], 'Wizard')) {
-      $Wa = new Warrior($ram[1], $y0[1], $y1[1], $y2[1], $y3[1], $y4[1], $y6[1], $y7[1]);
-      $Wi = new Wizzard($ram[2], $y0[2], $y1[2], $y2[2], $y3[2], $y5[2], $y6[2], $y7[2]);
+      $Wa = new Warrior($ram[1], $y0[1], $y1[1], $y2[1], $y3[1], $y4[1], $y5[1], $y8[1], $y9[1]);
+      $Wi = new Wizzard($ram[2], $y0[2], $y1[2], $y2[2], $y3[2], $y6[2], $y7[2], $y8[2], $y9[2]);
     }
 
 

@@ -40,7 +40,7 @@
 		var Wa_hp= '<?php echo $Wa->GetHP(); ?>';
 		var Wa_hp_max= '<?php echo $Wa->GetHP_Max(); ?>';
 		var Wa_str= '<?php echo $Wa->GetStr(); ?>';
-		//var Wa_iq= '';
+		var Wa_arm= '<?php echo $Wa->GetArm(); ?>';
     var Wa_tiempo= '<?php echo $Wa->GetTiempo(); ?>';
 
 
@@ -48,8 +48,8 @@
 		var Wi_nom= '<?php echo $Wi->GetNombre(); ?>';
 		var Wi_hp= '<?php echo $Wi->GetHP(); ?>';
 		var Wi_hp_max= '<?php echo $Wi->GetHP_Max(); ?>';
-		//var Wi_str= '';
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
+    var Wi_rMag= '<?php echo $Wi->GetRMag(); ?>';
     var Wi_tiempo= '<?php echo $Wi->GetTiempo(); ?>';
 
     function WiLife(){
@@ -150,6 +150,7 @@
              <span id='hpWa'>HP: <?php echo $Wa->GetHP(); ?> </span><br><br>
 			       Vida Máxima: <?php echo $Wa->GetHP_Max(); ?><br><br>
              Fuerza: <?php echo $Wa->GetStr(); ?> <br><br>
+             Armadura: <?php echo $Wa->GetArm(); ?>
           </p>
             <img style="margin:auto;" src="./resources/img/Warrior.png" alt="Warrior" height="120" width="100">
             <p id='demoWa'></p>
@@ -161,7 +162,8 @@
              Oro: <?php echo $Wi->GetGold(); ?> <br><br>
              <span id='hpWi'>HP: <?php echo $Wi->GetHP(); ?> </span><br><br>
 			       Vida Máxima: <?php echo $Wi->GetHP_Max(); ?><br><br>
-             Inteligencia: <?php echo $Wi->GetIQ(); ?>
+             Inteligencia: <?php echo $Wi->GetIQ(); ?><br><br>
+             Resistencia Mágica: <?php echo $Wi->GetRMag(); ?>
           </p>
           <img style="margin:auto;" src="./resources/img/Wizard.png" alt="Wizard" height="120" width="100">
           <p id='demoWi'></p>

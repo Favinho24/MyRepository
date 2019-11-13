@@ -71,6 +71,9 @@
 		$gc='';
 		$prob_gc='';
 		$tipo='';
+		$nom='';
+		$arm='';
+		$rMag='';
 		$hp='';
 		$hp_max='';
 		$str='';
@@ -83,12 +86,15 @@
 			$tipo=$reg['Tipo'];
 		}
 
-		$vin=$database->query("SELECT hp, hp_max FROM pj WHERE id='".$idp2."';");
+		$vin=$database->query("SELECT nombre, hp, hp_max, armadura, rMagica FROM pj WHERE id='".$idp2."';");
 
 
 		while ($reg=mysqli_fetch_array($vin)) {
+			$nom=$reg['nombre'];
 			$hp=$reg['hp'];
 			$hp_max=$reg['hp_max'];
+			$arm=$reg['armadura'];
+			$rMag=$reg['rMagica'];
 		}
 
 		$vin=$database->query("SELECT str, iq FROM pj WHERE id='".$idp1."';");
@@ -99,11 +105,30 @@
 			$iq=$reg['iq'];
 		}
 
-		if ($tipo == 'Arma'){
-			$daño=$daño+$str;
-		}else if($tipo == 'Hechizo'){
-			$daño=$daño+$iq;
+		$rival='';
+		if ((explode('_', $nom))[1] == 'Warrior') {
+			$rival='wa';
+		}else if ((explode('_', $nom))[1] == 'Wizard'){
+			$rival='wi';
 		}
+
+		$arm = mt_rand(0, $arm);
+		$rMag = mt_rand(0, $rMag);
+
+		if ($tipo == 'Arma'){
+			if ($rival == 'wa') {
+				$daño=$daño+$str-$arm;
+			}else {
+				$daño=$daño+$str;
+			}
+		}else if($tipo == 'Hechizo'){
+			if ($rival == 'wi') {
+				$daño=$daño+$iq-$rMag;
+			}else {
+				$daño=$daño+$str;
+			}
+		}
+
 
 
 		$pro=rand(1, 1000);
@@ -117,6 +142,9 @@
 			echo ' ha Evadido';
       AcabarTurno(' ha Evadido');
 			exit;
+		}
+		if ($daño < 0) {
+			$daño=0;
 		}
 
 		if (($hp - $daño) < 0) {

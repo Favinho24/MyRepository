@@ -121,20 +121,27 @@ function InfoAttacks() {
 
 
 function GenerarEntorno(ac){
+//-------------------------------------
+// Volver a mi perfil Button
+// <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'>
+//-------------------------------------
 
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'></div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div></div>";
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span><br><br>Armadura: <span id='ArmaduraYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span><br><br>Resistencia Mágica: <span id='RMagYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> </div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';
 		document.getElementById('miVida').innerHTML = Wa_hp+'/'+Wa_hp_max;
 		document.getElementById('FuerzaYo').innerHTML=Wa_str;
 		document.getElementById('iqtxt').innerHTML='';
+		document.getElementById('ArmaduraYo').innerHTML=Wa_arm;
+		
 	}else if(Wi_id==pj){
 		document.getElementById('miPersonaje').innerHTML=Wi_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wi_hp+'/'+Wi_hp_max, 400) + 'px';
 		document.getElementById('miVida').innerHTML = Wi_hp+'/'+Wi_hp_max;
 		document.getElementById('strtxt').innerHTML='';
 		document.getElementById('IQYo').innerHTML=Wi_iq;
+		document.getElementById('RMagYo').innerHTML=Wi_rMag;
 	}
 
 	setTimeout("Buscar("+wea+");", 1);
@@ -190,7 +197,7 @@ function atacar(){
         return;
     }else{
         estado2 = false;
-		//console.log(log);
+		//console.log(mensaje2);
 		//log =mensaje2;
 		setTimeout("Buscar("+wea+");", 1);
     }

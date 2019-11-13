@@ -60,16 +60,21 @@ INSERT INTO `habilidades` (`id`, `name`, `daño`, `gc`, `prob_gc`, `valor`, `des
 --
 
 CREATE TABLE `pj` (
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `gold` bigint(20) NOT NULL,
-  `hp` smallint(6) NOT NULL,
-  `str` smallint(6) DEFAULT NULL,
-  `iq` smallint(6) DEFAULT NULL,
-  `hp_max` int(11) NOT NULL,
-  `tiempo` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`id_usuario` INT(11) NOT NULL,
+	`nombre` VARCHAR(100) NOT NULL,
+	`gold` BIGINT(20) NOT NULL,
+	`hp` SMALLINT(6) NOT NULL,
+	`str` SMALLINT(6) NULL DEFAULT NULL,
+	`armadura` SMALLINT(6) NULL DEFAULT NULL,
+	`iq` SMALLINT(6) NULL DEFAULT NULL,
+	`rMagica` SMALLINT(6) NULL DEFAULT NULL,
+	`hp_max` INT(11) NOT NULL,
+	`tiempo` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `fk_pj_Usuario` (`id_usuario`),
+	CONSTRAINT `fk_pj_Usuario` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 --
 -- Volcado de datos para la tabla `pj`
@@ -163,8 +168,9 @@ INSERT INTO `Usuario` (`id`, `nombre`, `pass`, `photo`) VALUES
 --
 DELIMITER $$
 CREATE TRIGGER `crearPersj` AFTER INSERT ON `Usuario` FOR EACH ROW begin
-  insert into pj(id_usuario,nombre,gold,hp,str,iq, hp_max) values(new.id,concat(new.nombre, '_Warrior'),100,200,20,5, 200);
-  insert into pj(id_usuario,nombre,gold,hp,str,iq, hp_max) values(new.id,concat(new.nombre, '_Wizard'),100,150,5,20, 150);
+  insert into pj(id_usuario,nombre,gold,hp,str,armadura,iq,rMagica,hp_max) values(new.id,concat(new.nombre, '_Warrior'),100,200,20,50,5,10,200);
+  insert into pj(id_usuario,nombre,gold,hp,str,armadura,iq,rMagica,hp_max) values(new.id,concat(new.nombre, '_Wizard'),100,150,5,10,20,50,150);
+
   end
 $$
 DELIMITER ;
