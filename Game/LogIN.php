@@ -23,7 +23,7 @@
         <li><a href="LogIN.php">Iniciar Sesión</a></li>
         <li><a href="register.php">Registrarse</a></li>
         <li><a href="index.php">Acerca de</a></li>
-        <li><a href="#">FAQ</a></li>
+        <li><a href="FAQ.php">FAQ</a></li>
       </ul>
     </div>
     <div class="contenedor">

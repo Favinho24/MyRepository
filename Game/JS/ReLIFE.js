@@ -38,3 +38,23 @@ function AttacksInfo(attk){
 				//document.getElementById('attkInfo').style.animation.duration: 4s;
 		}
 }
+
+function ChatBD(msj, log){
+	if(!estado3){
+        ajax3("POST","./php_calculate/chat.php","msj="+msj+"&log="+log,"ChatBD(0, 0)");
+        return;
+    }else{
+        estado3 = false;
+				ChatDB(wea);
+		}
+}
+var chat = '';
+function ChatDB(loga){
+	if(!estado3){
+        ajax3("POST","./php_calculate/chatSolicitud.php","wa="+loga,"ChatDB(0)");
+        return;
+    }else{
+        estado3 = false;
+				chat=mensaje3;
+		}
+}

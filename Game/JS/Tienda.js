@@ -194,6 +194,28 @@ function ajax3(metodo, direccion, parametros,fun){
     ajax_4.send(parametros)
     return;
 }
+var mensaje4;
+var estado4 = false;
+function ajax4(metodo, direccion, parametros,fun){
+    mensaje4= "";
+    estado4 = true;
+
+    ajax_5 = objetoAjax();
+    ajax_5.open(metodo, direccion, true);
+    ajax_5.onreadystatechange = function() {
+        if (ajax_5.readyState == 4){
+            mensaje4 = (ajax_5.responseText)
+            if(mensaje4 == "error"){
+                alert("PHP - fallo 4");
+                return;
+            }
+            eval(fun);
+        }
+    }
+    ajax_5.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    ajax_5.send(parametros);
+    return;
+}
 
 function objetoAjax(){
     var xmlhttp = false;

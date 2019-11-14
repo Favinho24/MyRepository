@@ -134,7 +134,7 @@
          <li><a href="LogIN.php" id='IS'>Iniciar Sesión</a></li>
          <li><a href="register.php">Registrarse</a></li>
          <li><a href="index.php">Acerca de</a></li>
-         <li><a href="#">FAQ</a></li>
+         <li><a href="FAQ.php">FAQ</a></li>
        </ul>
 	   <script>
 		document.getElementById('IS').innerHTML='Perfil';

@@ -188,7 +188,8 @@ CREATE TABLE `vinculo` (
   `idPj1` int(11) NOT NULL,
   `idPj2` int(11) NOT NULL,
   `UsuarioTurno` int(11) NOT NULL,
-  `log` text DEFAULT NULL
+  `log` text DEFAULT NULL,
+  `msj` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
