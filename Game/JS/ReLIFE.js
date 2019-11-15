@@ -41,11 +41,12 @@ function AttacksInfo(attk){
 
 function ChatBD(msj, log){
 	if(!estado3){
-        ajax3("POST","./php_calculate/chat.php","msj="+msj+"&log="+log,"ChatBD(0, 0)");
+        ajax3("POST","./php_calculate/chat.php","msj="+msj+"&id="+players,"ChatBD(0, 0)");
         return;
     }else{
         estado3 = false;
-				ChatDB(wea);
+		console.log(mensaje3);
+		ChatDB(players);
 		}
 }
 var chat = '';
@@ -55,6 +56,25 @@ function ChatDB(loga){
         return;
     }else{
         estado3 = false;
-				chat=mensaje3;
+		
+		try {
+			chat = JSON.parse(mensaje3);
+			//console.log(chat);
+		}catch(error){
+			console.log(error);
+			chat = 'No se pudo decodificar el Chat';
+			return;
+		}	
+				//chat=mensaje3;
+		}
+}
+var players='';
+function Players(log){
+	if(!estado4){
+        ajax4("POST","./php_calculate/players.php","log="+log,"Players(0)");
+        return;
+    }else{
+        estado4 = false;
+		players = mensaje4;
 		}
 }

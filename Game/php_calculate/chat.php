@@ -10,15 +10,20 @@
 		echo 'error';
 		exit;
 	}
-  if (isset($_POST['log'])){
-		$wea=$_POST['log'];
+  if (isset($_POST['id'])){
+		$id=$_POST['id'];
 	}else{
 		echo 'error';
 		exit;
 	}
 
-  $database = new DatabaseObject($host, $username, $password, $database);
+  $id1=(explode(' ', $id))[0];
+  $id2=(explode(' ', $id))[1];
 
-  $database->query("UPDATE vinculo SET msj='".$msj."' WHERE idLog='".$wea."';");
+  $database = new DatabaseObject($host, $username, $password, $database);
+  $database->query("INSERT INTO chat (texto, idpj1, idpj2, fechayhora) VALUES ('".$msj."', '".$id1."', '".$id2."', CURRENT_TIMESTAMP());");
+
+
+  exit;
 
  ?>

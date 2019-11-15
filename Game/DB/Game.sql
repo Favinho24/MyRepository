@@ -102,11 +102,32 @@ END
 $$
 DELIMITER ;
 
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `chat`
+--
+
+CREATE TABLE `Game`.`chat` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`texto` TEXT NOT NULL , 
+	`idpj1` INT NOT NULL , 
+	`idpj2` INT NOT NULL , 
+	`fechayhora` DATETIME NOT NULL , 
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`idpj1`) REFERENCES pj(id),
+	FOREIGN KEY (`idpj2`) REFERENCES pj(id)
+) ENGINE = InnoDB;
+
+
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `p_h`
 --
+
 
 CREATE TABLE `p_h` (
   `id` int(11) NOT NULL,
@@ -188,8 +209,7 @@ CREATE TABLE `vinculo` (
   `idPj1` int(11) NOT NULL,
   `idPj2` int(11) NOT NULL,
   `UsuarioTurno` int(11) NOT NULL,
-  `log` text DEFAULT NULL,
-  `msj` text DEFAULT NULL
+  `log` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -16,7 +16,9 @@ function EnterMP(pj){
 }
 
 var bo=true;
-
+var xd=0;
+var xd1=0;
+var xd2=0;
 
 function Buscar(mensajex){
 	if(!estado){
@@ -37,12 +39,14 @@ function Buscar(mensajex){
 
 		if(objeto.estado == 'wait'){
 			//console.log('espere');
-      ChatDB(wea);
-      if (chat != '') {
-        if (((document.getElementById('chat01').innerHTML).split('<br>', 10000))[((document.getElementById('chat01').innerHTML).split('<br>', 10000)).length-1] != chat) {
-          document.getElementById('chat01').innerHTML=document.getElementById('chat01').innerHTML+ '<br>' +chat;
-        }
-      }
+			xd1=0;
+			xd2=0;
+			if (xd>60){
+				alert("No hay Partidas a la redonda, vuelva mas tarde");
+				location.reload(true);
+			}
+			xd=xd+1;
+			console.log(xd);
 			setTimeout("Buscar("+wea+");", 3000);
 		}else if(objeto.estado == 'You GO'){
 			document.getElementById('inputA').disabled=false;
@@ -53,19 +57,27 @@ function Buscar(mensajex){
 			}else{
 				setTimeout("Buscar("+wea+");", 3000);
 			}
-
-
+			
+			xd=0;
+			xd2=0;
+			if (xd1>60){
+				alert("Ta has ido AFK, partida cancelada");
+				location.reload(true);
+			}
+			xd1=xd1+1;
+			console.log(xd1);
+	
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
-			//if (ChatDB(wea) != '' || ChatDB(wea) != 'undefined') {
-      ChatDB(wea);
-      if (chat != '') {
-        if (((document.getElementById('chat01').innerHTML).split('<br>', 10000))[((document.getElementById('chat01').innerHTML).split('<br>', 10000)).length-1] != chat) {
-          document.getElementById('chat01').innerHTML=document.getElementById('chat01').innerHTML+ '<br>' +chat;
-        }
-      }
-			//}
+
+				
+			Players(wea);
+			ChatDB(players);
+			chat = JSON.stringify(chat);
+			document.getElementById('chat01').innerHTML=chat.replace(/\]/g, '').replace(/\[/g, '').replace(/"/g, '').replace(/,/g, '<br>');
+			
+
 			if (objeto.log != null){
 				if (((document.getElementById('logPanel').innerHTML).split('<br>', 10000))[((document.getElementById('logPanel').innerHTML).split('<br>', 10000)).length-1] != 'Te'+objeto.log) {
 					document.getElementById('logPanel').innerHTML=document.getElementById('logPanel').innerHTML+'<br>'+'Te'+objeto.log;
@@ -89,17 +101,24 @@ function Buscar(mensajex){
 			}else{
 				setTimeout("Buscar("+wea+");", 3000);
 			}
+			xd=0;
+			xd1=0;
+			if (xd2>60){
+				alert("El otro player está AFK, partida cancelada");
+				location.reload(true);
+			}
+			xd2=xd2+1;
+			console.log(xd2);
+			
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
-			//if (ChatDB(wea) != '' || ChatDB(wea) != 'undefined') {
-      ChatDB(wea);
-      if (chat != '') {
-        if (((document.getElementById('chat01').innerHTML).split('<br>', 10000))[((document.getElementById('chat01').innerHTML).split('<br>', 10000)).length-1] != chat) {
-          document.getElementById('chat01').innerHTML=document.getElementById('chat01').innerHTML+ '<br>' +chat;
-        }
-      }
-			//}
+
+			Players(wea);
+			ChatDB(players);
+			chat = JSON.stringify(chat);
+			document.getElementById('chat01').innerHTML=chat.replace(/\]/g, '').replace(/\[/g, '').replace(/"/g, '').replace(/,/g, '<br>');
+			
 
 			if (objeto.log != null){
 				if (((document.getElementById('logPanel').innerHTML).split('<br>', 10000))[((document.getElementById('logPanel').innerHTML).split('<br>', 10000)).length-1] != 'Se'+objeto.log) {
@@ -151,9 +170,8 @@ function Enter(a){
 
 function InsertChat(e, texto){
   if (Enter(e) == "true"){
-    ChatBD(Wa_nom+': '+texto, wea);
+    ChatBD('<b>'+document.getElementById('miPersonaje').innerHTML+': '+'</b>'+texto, wea);
     if (texto != '') {
-      document.getElementById('chat01').innerHTML=document.getElementById('chat01').innerHTML+ '<br>' +Wa_nom+': '+texto;
       document.getElementById('chat02').value='';
     }
 
