@@ -7,13 +7,13 @@
 	if(isset($_POST['mensaje'])){
 		$men = $_POST['mensaje'];
 	}else{
-		echo 'error';
+		echo 'error linea 10';
 	}
 
 	if(isset($_POST['pj'])){
 		$pj = $_POST['pj'];
 	}else{
-		echo 'error';
+		echo 'error linea 16';
 	}
 
 

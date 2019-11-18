@@ -31,7 +31,7 @@
 	if($id == ''){
 		$sql = "INSERT into `vinculo`(idUsuario1, idUsuario2, idPj1, idPj2, UsuarioTurno) VALUES (".$_SESSION['id_user'].", 0, ".$idPersonaje.", 0, 0)";
 	}else{
-		$sql = "UPDATE `vinculo` SET idUsuario2 = " .$_SESSION['id_user']. ", idPj2 = " . $idPersonaje . ", UsuarioTurno = " . $usuario1 . " WHERE idLog = " . $id;
+		$sql = "UPDATE `vinculo` SET idUsuario2 = " .$_SESSION['id_user']. ", idPj2 = " . $idPersonaje . ", UsuarioTurno = " . $usuario1 . ", log = ' inició la partida' WHERE idLog = " . $id;
 	}
 
 	$database->query($sql);

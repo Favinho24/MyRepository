@@ -1,4 +1,4 @@
-
+--
 -- Base de datos: `Game`
 --
 CREATE DATABASE IF NOT EXISTS `Game`;
@@ -7,19 +7,37 @@ USE `Game`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `chat`
+--
+
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `texto` text NOT NULL,
+  `idpj1` int(11) NOT NULL,
+  `idpj2` int(11) NOT NULL,
+  `fechayhora` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idpj1` (`idpj1`),
+  KEY `idpj2` (`idpj2`)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `habilidades`
 --
 
-CREATE TABLE `habilidades` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `habilidades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `daño` int(11) NOT NULL,
   `gc` int(11) NOT NULL,
   `prob_gc` int(11) NOT NULL,
   `valor` int(11) NOT NULL,
   `descrip` varchar(255) NOT NULL,
-  `Tipo` enum('Hechizo','Arma') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Tipo` enum('Hechizo','Arma') NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 --
 -- Volcado de datos para la tabla `habilidades`
@@ -38,7 +56,7 @@ INSERT INTO `habilidades` (`id`, `name`, `daño`, `gc`, `prob_gc`, `valor`, `des
 (10, 'Kamahameha', 40, 50, 20, 80, 'Kakaroto\'s power', 'Hechizo'),
 (11, 'Genkidama', 60, 65, 20, 140, 'KI del Universo', 'Hechizo'),
 (12, 'Rasengan', 40, 45, 25, 120, 'Minato\'s Technique', 'Hechizo'),
-(13, 'Chidori', 34, 50, 26, 120, 'Fail appling lightning chakra to Rasengan', 'Hechizo'),
+(13, 'Chidori', 34, 50, 26, 120, 'Fail applying lightning chakra to Rasengan', 'Hechizo'),
 (14, 'RasenShuriken', 70, 80, 30, 160, 'Naruto\'s Full Technique', 'Hechizo'),
 (15, 'Chasquido de Thanos', 90, 900, 50, 500, 'Deleteador Infinito', 'Hechizo'),
 (16, 'Lanza', 7, 8, 10, 12, 'Arma Blanca con distancia', 'Arma'),
@@ -56,37 +74,39 @@ INSERT INTO `habilidades` (`id`, `name`, `daño`, `gc`, `prob_gc`, `valor`, `des
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `partidas`
+--
+
+CREATE TABLE IF NOT EXISTS `partidas` (
+  `idplayer` int(11) NOT NULL,
+  `pj` int(11) NOT NULL DEFAULT 0,
+  `pg` int(11) NOT NULL DEFAULT 0,
+  `pp` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idplayer`)
+);
+
+
+--
 -- Estructura de tabla para la tabla `pj`
 --
 
-CREATE TABLE `pj` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`id_usuario` INT(11) NOT NULL,
-	`nombre` VARCHAR(100) NOT NULL,
-	`gold` BIGINT(20) NOT NULL,
-	`hp` SMALLINT(6) NOT NULL,
-	`str` SMALLINT(6) NULL DEFAULT NULL,
-	`armadura` SMALLINT(6) NULL DEFAULT NULL,
-	`iq` SMALLINT(6) NULL DEFAULT NULL,
-	`rMagica` SMALLINT(6) NULL DEFAULT NULL,
-	`hp_max` INT(11) NOT NULL,
-	`tiempo` DATETIME NULL DEFAULT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `fk_pj_Usuario` (`id_usuario`),
-	CONSTRAINT `fk_pj_Usuario` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS `pj` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `gold` bigint(20) NOT NULL,
+  `hp` smallint(6) NOT NULL,
+  `str` smallint(6) DEFAULT NULL,
+  `armadura` smallint(6) DEFAULT NULL,
+  `iq` smallint(6) DEFAULT NULL,
+  `rMagica` smallint(6) DEFAULT NULL,
+  `hp_max` int(11) NOT NULL,
+  `tiempo` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_pj_Usuario` (`id_usuario`)
 );
 
---
--- Volcado de datos para la tabla `pj`
---
 
-INSERT INTO `pj` (`id`, `id_usuario`, `nombre`, `gold`, `hp`, `str`, `iq`, `hp_max`, `tiempo`) VALUES
-(23, 29, 'Favio24_Warrior', 330, 500, 20, 5, 500, NULL),
-(24, 29, 'Favio24_Wizard', 300, 150, 5, 20, 150, NULL),
-(27, 35, 'Tomas_Warrior', 100, 200, 20, 5, 200, NULL),
-(28, 35, 'Tomas_Wizard', 100, 150, 5, 20, 150, NULL),
-(29, 36, 'favinho_Warrior', 8, 200, 20, 5, 200, NULL),
-(30, 36, 'favinho_Wizard', 1090, 889, 5, 20, 999, NULL);
 
 --
 -- Disparadores `pj`
@@ -101,26 +121,18 @@ CREATE TRIGGER `Bloq_pj` BEFORE UPDATE ON `pj` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `chat`
---
-
-CREATE TABLE `Game`.`chat` ( 
-	`id` INT NOT NULL AUTO_INCREMENT , 
-	`texto` TEXT NOT NULL , 
-	`idpj1` INT NOT NULL , 
-	`idpj2` INT NOT NULL , 
-	`fechayhora` DATETIME NOT NULL , 
-	PRIMARY KEY (`id`),
-	FOREIGN KEY (`idpj1`) REFERENCES pj(id),
-	FOREIGN KEY (`idpj2`) REFERENCES pj(id)
-) ENGINE = InnoDB;
-
-
+DELIMITER $$
+CREATE TRIGGER `insertarEnPartidas` AFTER INSERT ON `pj` FOR EACH ROW BEGIN
+	INSERT INTO `partidas` (`idplayer`, `pj`, `pg`, `pp`) VALUES (new.id, '0', '0', '0');
+    if (new.hp_max = 150) THEN
+    	INSERT into p_h(idPj, idHab) values (new.id, 1);
+    end if;
+    if (new.hp_max = 200) THEN
+    	INSERT into p_h(idPj, idHab) values (new.id, 2);
+    end if;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -128,12 +140,12 @@ CREATE TABLE `Game`.`chat` (
 -- Estructura de tabla para la tabla `p_h`
 --
 
-
-CREATE TABLE `p_h` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `p_h` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idPj` int(11) NOT NULL,
-  `idHab` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idHab` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 --
 -- Volcado de datos para la tabla `p_h`
@@ -160,7 +172,15 @@ INSERT INTO `p_h` (`id`, `idPj`, `idHab`) VALUES
 (27, 30, 16),
 (28, 30, 5),
 (29, 30, 8),
-(30, 23, 13);
+(30, 23, 13),
+(31, 27, 2),
+(32, 33, 23),
+(33, 27, 24),
+(34, 37, 1),
+(35, 38, 2),
+(36, 39, 2),
+(37, 40, 1),
+(38, 28, 2);
 
 -- --------------------------------------------------------
 
@@ -168,21 +188,25 @@ INSERT INTO `p_h` (`id`, `idPj`, `idHab`) VALUES
 -- Estructura de tabla para la tabla `Usuario`
 --
 
-CREATE TABLE `Usuario` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `Usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `pass` varchar(100) NOT NULL,
-  `photo` longblob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `photo` longblob DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre` (`nombre`)
+);
 
 --
 -- Volcado de datos para la tabla `Usuario`
 --
 
 INSERT INTO `Usuario` (`id`, `nombre`, `pass`, `photo`) VALUES
-(29, 'Favio24', '25f9e794323b453885f5181f1b624d0b', NULL),
+(29, 'Favio24', '25f9e794323b453885f5181f1b624d0b', null),
 (35, 'Tomas', '25f9e794323b453885f5181f1b624d0b', NULL),
-(36, 'favinho', '25f9e794323b453885f5181f1b624d0b', NULL);
+(36, 'favinho', '25f9e794323b453885f5181f1b624d0b', NULL),
+(39, 'FavioC', '25f9e794323b453885f5181f1b624d0b', NULL),
+(42, 'weiaxd', '25f9e794323b453885f5181f1b624d0b', NULL);
 
 --
 -- Disparadores `Usuario`
@@ -191,7 +215,6 @@ DELIMITER $$
 CREATE TRIGGER `crearPersj` AFTER INSERT ON `Usuario` FOR EACH ROW begin
   insert into pj(id_usuario,nombre,gold,hp,str,armadura,iq,rMagica,hp_max) values(new.id,concat(new.nombre, '_Warrior'),100,200,20,50,5,10,200);
   insert into pj(id_usuario,nombre,gold,hp,str,armadura,iq,rMagica,hp_max) values(new.id,concat(new.nombre, '_Wizard'),100,150,5,10,20,50,150);
-
   end
 $$
 DELIMITER ;
@@ -202,90 +225,54 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `vinculo`
 --
 
-CREATE TABLE `vinculo` (
-  `idLog` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `vinculo` (
+  `idLog` bigint(20) NOT NULL AUTO_INCREMENT,
   `idUsuario1` int(11) NOT NULL,
   `idUsuario2` int(11) NOT NULL,
   `idPj1` int(11) NOT NULL,
   `idPj2` int(11) NOT NULL,
   `UsuarioTurno` int(11) NOT NULL,
-  `log` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
--- Índices para tablas volcadas
---
+  `log` text DEFAULT NULL,
+  PRIMARY KEY (`idLog`)
+);
 
 --
--- Indices de la tabla `habilidades`
---
-ALTER TABLE `habilidades`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `pj`
---
-ALTER TABLE `pj`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_pj_Usuario` (`id_usuario`);
-
---
--- Indices de la tabla `p_h`
---
-ALTER TABLE `p_h`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `Usuario`
---
-ALTER TABLE `Usuario`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
-
---
--- Indices de la tabla `vinculo`
---
-ALTER TABLE `vinculo`
-  ADD PRIMARY KEY (`idLog`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
+-- Volcado de datos para la tabla `vinculo`
 --
 
---
--- AUTO_INCREMENT de la tabla `habilidades`
---
-ALTER TABLE `habilidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+INSERT INTO `vinculo` (`idLog`, `idUsuario1`, `idUsuario2`, `idPj1`, `idPj2`, `UsuarioTurno`, `log`) VALUES
+(739, 35, 36, 28, 29, 36, ' hicieron 0 puntos de daño usando Kunai');
 
 --
--- AUTO_INCREMENT de la tabla `pj`
+-- Disparadores `vinculo`
 --
-ALTER TABLE `pj`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT de la tabla `p_h`
---
-ALTER TABLE `p_h`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT de la tabla `Usuario`
---
-ALTER TABLE `Usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT de la tabla `vinculo`
---
-ALTER TABLE `vinculo`
-  MODIFY `idLog` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=367;
+DELIMITER $$
+CREATE TRIGGER `partidasJugadas` BEFORE UPDATE ON `vinculo` FOR EACH ROW BEGIN
+IF !(new.idPj2 <=> null) and (new.log <=> ' inició la partida')
+THEN
+	update partidas set pj=pj+1 WHERE idplayer=old.idPj1;
+    update partidas set pj=pj+1 WHERE idplayer=new.idPj2;
+   end if;
+END
+$$
+DELIMITER ;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `chat`
+--
+ALTER TABLE `chat`
+  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`idpj1`) REFERENCES `pj` (`id`),
+  ADD CONSTRAINT `chat_ibfk_2` FOREIGN KEY (`idpj2`) REFERENCES `pj` (`id`);
+
+--
+-- Filtros para la tabla `partidas`
+--
+ALTER TABLE `partidas`
+  ADD CONSTRAINT `fk_idPlayer` FOREIGN KEY (`idplayer`) REFERENCES `pj` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pj`
@@ -294,3 +281,16 @@ ALTER TABLE `pj`
   ADD CONSTRAINT `fk_pj_Usuario` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+--
+-- Volcado de datos para la tabla `pj`
+--
+
+INSERT INTO `pj` (`id`, `id_usuario`, `nombre`, `gold`, `hp`, `str`, `armadura`, `iq`, `rMagica`, `hp_max`, `tiempo`) VALUES
+(23, 29, 'Favio24_Warrior', 730, 107, 20, 50, 5, 10, 500, NULL),
+(24, 29, 'Favio24_Wizard', 650, 46, 5, 10, 20, 50, 150, NULL),
+(27, 35, 'Tomas_Warrior', 0, 200, 20, 50, 5, 10, 200, NULL),
+(28, 35, 'Tomas_Wizard', 90, 70, 5, 10, 20, 50, 150, NULL),
+(29, 36, 'favinho_Warrior', 308, 148, 20, 50, 5, 10, 200, NULL),
+(30, 36, 'favinho_Wizard', 1340, 337, 5, 10, 20, 50, 999, NULL),
+(33, 39, 'FavioC_Warrior', 35, 188, 20, 50, 5, 10, 200, NULL),
+(34, 39, 'FavioC_Wizard', 100, 150, 5, 10, 20, 50, 150, NULL);

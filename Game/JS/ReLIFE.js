@@ -58,11 +58,18 @@ function ChatDB(loga){
         estado3 = false;
 		
 		try {
-			chat = JSON.parse(mensaje3);
+			
+			
+			
+				chat = JSON.parse(mensaje3);
+			
+			
 			//console.log(chat);
+			//console.log('///////////////////////////////');
 		}catch(error){
 			console.log(error);
 			chat = 'No se pudo decodificar el Chat';
+			console.log(mensaje3);
 			return;
 		}	
 				//chat=mensaje3;

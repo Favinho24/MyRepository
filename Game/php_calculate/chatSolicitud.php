@@ -13,8 +13,10 @@
   }
 
   $id=array();
-  $id[]=(explode(' ', $wea))[0];
-  $id[]=(explode(' ', $wea))[1];
+	  $id[]=(explode(" ", $wea))[0];
+	  $id[]=(explode(" ", $wea))[1]; 
+  
+ 
 
   $database = new DatabaseObject($host, $username, $password, $database);
 
@@ -23,6 +25,7 @@
   while ($reg = mysqli_fetch_array($vin)){
    $msj[]=$reg['texto'];
   }
+  
   print_r (json_encode($msj));
   exit;
 

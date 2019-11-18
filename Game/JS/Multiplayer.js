@@ -57,7 +57,7 @@ function Buscar(mensajex){
 			}else{
 				setTimeout("Buscar("+wea+");", 3000);
 			}
-			
+
 			xd=0;
 			xd2=0;
 			if (xd1>60){
@@ -66,17 +66,17 @@ function Buscar(mensajex){
 			}
 			xd1=xd1+1;
 			console.log(xd1);
-	
+
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
 
-				
+
 			Players(wea);
 			ChatDB(players);
 			chat = JSON.stringify(chat);
 			document.getElementById('chat01').innerHTML=chat.replace(/\]/g, '').replace(/\[/g, '').replace(/"/g, '').replace(/,/g, '<br>');
-			
+
 
 			if (objeto.log != null){
 				if (((document.getElementById('logPanel').innerHTML).split('<br>', 10000))[((document.getElementById('logPanel').innerHTML).split('<br>', 10000)).length-1] != 'Te'+objeto.log) {
@@ -109,7 +109,7 @@ function Buscar(mensajex){
 			}
 			xd2=xd2+1;
 			console.log(xd2);
-			
+
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
 			document.getElementById('VidaYoID').style.width = calcItemVida(objeto.vida, 400)+'px';
 			document.getElementById('miVida').innerHTML = objeto.vida;
@@ -118,7 +118,7 @@ function Buscar(mensajex){
 			ChatDB(players);
 			chat = JSON.stringify(chat);
 			document.getElementById('chat01').innerHTML=chat.replace(/\]/g, '').replace(/\[/g, '').replace(/"/g, '').replace(/,/g, '<br>');
-			
+
 
 			if (objeto.log != null){
 				if (((document.getElementById('logPanel').innerHTML).split('<br>', 10000))[((document.getElementById('logPanel').innerHTML).split('<br>', 10000)).length-1] != 'Se'+objeto.log) {
@@ -251,7 +251,9 @@ function Enemy(csa, go){
 
 function atacar(){
 	if(!estado2){
-		var feo=document.getElementById('selectAtack').value
+
+		var feo=document.getElementById('selectAtack').value;
+		//alert(feo+'///'+opa+'///'+coso+'///'+wea);
         ajax2("POST","./php_calculate/atacar.php","option="+feo+"&idp2="+opa+"&pj="+coso+"&idLog="+wea,"atacar()");
         return;
     }else{

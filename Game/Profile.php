@@ -14,6 +14,7 @@
 	 <script src="./JS/Multiplayer.js"></script>
 	 <script src="./JS/Tienda.js"></script>
    <script src="./JS/ReLIFE.js"></script>
+   <script src="./JS/Ranking.js"></script>
      <script>
 
      function dateDiff(date) {
@@ -170,6 +171,7 @@
      </div>
 
         <br><br><br><br>
+		<input class="myButton buttonRanking" type="button" name="ranking" value="Ranking" onclick="Ranking();">
 		<input class="myButton buttonInventario" type="button" name="inventario" value="Inventario" onclick="Inventario();">
         <input class="myButton buttonMultiplayer" type="button" name="multiplayer" value="Multiplayer" onclick="Multiplayer();">
         <input class="myButton buttonTienda" type="button" name="tienda" value="Tienda" onclick="Tienda();">

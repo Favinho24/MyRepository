@@ -65,9 +65,10 @@
 
 		global $database, $idp2, $option, $idp1, $idLog;
 
-		$vin=$database->query("SELECT daño, gc, prob_gc, Tipo FROM habilidades WHERE name='".$option."';");
+		$vin=$database->query("SELECT name, daño, gc, prob_gc, Tipo FROM habilidades WHERE name='".$option."';");
 
 		global $daño;
+		$neim='';
 		$gc='';
 		$prob_gc='';
 		$tipo='';
@@ -80,6 +81,7 @@
 		$iq='';
 
 		while ($reg=mysqli_fetch_array($vin)) {
+			$neim = $reg['name'];
 			$daño = $reg['daño'];
 			$gc = $reg['gc'];
 			$prob_gc = $reg['prob_gc'];
@@ -146,19 +148,21 @@
 		if ($daño < 0) {
 			$daño=0;
 		}
-
-		if (($hp - $daño) < 0) {
-			echo ' oponente muerto';
+		echo 'hola';
+		if (($hp - $daño) <= 0) {
+			echo ' oponente muerto usando '.$neim;
 			$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
+			$database->query("UPDATE partidas SET pp=pp+1 WHERE idplayer=".$idp2.";");
 			$database->query("UPDATE pj SET gold=gold+100 WHERE id=".$idp1.";");
-			AcabarTurno(' oponente muerto');
+			$database->query("UPDATE partidas SET pg=pg+1 WHERE idplayer=".$idp1.";");
+			AcabarTurno(' oponente muerto usando '.$neim);
 			exit;
 		}
 
 
 		$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");
-		AcabarTurno(' hicieron '.$daño.' puntos de daño');
-		echo ' hicieron '.$daño.' puntos de daño';
+		AcabarTurno(' hicieron '.$daño.' puntos de daño usando '.$neim);
+		echo ' hicieron '.$daño.' puntos de daño usando '.$neim;
 		exit;
 
 
