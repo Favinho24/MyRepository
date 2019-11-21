@@ -87,7 +87,7 @@ function Buscar(mensajex){
 				alert('Se ha cancelado la partida');
 				location.reload(true);
 			}
-			if (objeto.log == ' oponente muerto') {
+			if (objeto.log.includes(' oponente muerto')) {
 				alert('Haz Muerto');
 				location.reload(true);
 			}
@@ -129,7 +129,7 @@ function Buscar(mensajex){
 				alert('Se ha cancelado la partida');
 				location.reload(true);
 			}
-			if (objeto.log == ' oponente muerto') {
+			if (objeto.log.includes(' oponente muerto')) {
 				alert('Ha Muerto Tu Oponente');
 				location.reload(true);
 			}
@@ -249,9 +249,10 @@ function Enemy(csa, go){
     }
 }
 
-function atacar(){
-	if(!estado2){
 
+
+function atacar(){
+    if(!estado2){
 		var feo=document.getElementById('selectAtack').value;
 		//alert(feo+'///'+opa+'///'+coso+'///'+wea);
         ajax2("POST","./php_calculate/atacar.php","option="+feo+"&idp2="+opa+"&pj="+coso+"&idLog="+wea,"atacar()");

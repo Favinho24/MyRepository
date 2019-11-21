@@ -47,7 +47,7 @@ function Comprar(e){
 
 function PCarga() {
 
-	document.getElementById('1c').style.height='auto';
+	//document.getElementById('1c').style.height='auto';
 	document.getElementById('1c').innerHTML='<div style="height:25em;"><div id="preloader_1"><span></span><span></span><span></span><span></span><span></span></div></div>';
 	//setTimeout(PCarga(), 2000);
 	//document.getElementById('1c').innerHTML='';
@@ -55,7 +55,7 @@ function PCarga() {
 }
 
 function constructorNombres() {
-	document.getElementById('1c').style.height='auto';
+	//document.getElementById('1c').style.height='auto';
 	var cadena = "<div class='flotador' id='flot1'></div>";
 	for(var i=0; i < objeto.length; i++){
 		cadena += "<div class='ListaTexto' onclick='showI("+i+");' id='h_"+i+"'>"+objeto[i].nombre+"</div>";

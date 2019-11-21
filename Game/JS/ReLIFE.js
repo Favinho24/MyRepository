@@ -31,7 +31,7 @@ function AttacksInfo(attk){
         estado3 = false;
 				var InfoAttack = "";
 				InfoAttack = JSON.parse(mensaje3);
-				document.getElementById('attkInfo').innerHTML='<center><b>'+InfoAttack.name+'</b><br><br>Daño:'+InfoAttack.daño+'<br>Golpe Crítico: '+InfoAttack.gc+'<br> Probabilidad GC: '+InfoAttack.prob_gc+'<br>Descripcion: '+InfoAttack.descrip+'<br>Tipo Attk: '+InfoAttack.tipo+'</center>';
+				document.getElementById('attkInfo').innerHTML='<center><b>'+InfoAttack.name+'</b><br><br>Daño: '+InfoAttack.daño+'<br>Golpe Crítico: '+InfoAttack.gc+'<br> Probabilidad GC: '+InfoAttack.prob_gc+'<br>Descripcion: '+InfoAttack.descrip+'<br>Tipo Attk: '+InfoAttack.tipo+'</center>';
 				document.getElementById('attkInfo').classList.add("anim");
 				//document.getElementById('attkInfo').style = "";
 				//document.getElementById('attkInfo').style.animation.name: levantar;
@@ -56,14 +56,14 @@ function ChatDB(loga){
         return;
     }else{
         estado3 = false;
-		
+
 		try {
-			
-			
-			
+
+
+
 				chat = JSON.parse(mensaje3);
-			
-			
+
+
 			//console.log(chat);
 			//console.log('///////////////////////////////');
 		}catch(error){
@@ -71,7 +71,7 @@ function ChatDB(loga){
 			chat = 'No se pudo decodificar el Chat';
 			console.log(mensaje3);
 			return;
-		}	
+		}
 				//chat=mensaje3;
 		}
 }
