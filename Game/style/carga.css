@@ -43,12 +43,12 @@ animation-delay: .8s;
 
 .ListaTexto{
 
-	display:block;
-	position:relative;
+	display: ruby-text;
+	/* position:relative; */
 
 	width: 300px;
-	left:3%;
-	margin-bottom:6px;
+	/* left:3%; */
+	/* margin-bottom:6px; */
 
 	font-family:Courier New;
 	font-size: 22px;
@@ -61,7 +61,7 @@ animation-delay: .8s;
 
 	position: fixed;
 	display: block;
-	top: 23%;
+	top: 30%;
 	left: 50%;
 	width: 300px;
   min-height: 280px;

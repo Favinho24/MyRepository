@@ -84,6 +84,8 @@
               Y por supuesto el factor aleatorio que no beneficia a nadie pero afecta los golpes criticos, la posibilidad de Esquive, la cantidad útil de Restencia
               o Armadura por personaje, entre otros.
             </p>
+            <br>
+            <br>
           </li>
         </ul>
 </p>

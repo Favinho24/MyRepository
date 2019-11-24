@@ -58,7 +58,7 @@ function constructorNombres() {
 	//document.getElementById('1c').style.height='auto';
 	var cadena = "<div class='flotador' id='flot1'></div>";
 	for(var i=0; i < objeto.length; i++){
-		cadena += "<div class='ListaTexto' onclick='showI("+i+");' id='h_"+i+"'>"+objeto[i].nombre+"</div>";
+		cadena += "<div style='vertical-align:middle; line-height:normal; position:relative; left:3%;'><div class='ListaTexto' onclick='showI("+i+");' id='h_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
 	}
 	document.getElementById('1c').innerHTML=cadena;
 }
@@ -101,7 +101,7 @@ function constructorItems() {
 
 	var cadena = "<div class='flotador' id='flot8'></div>";
 	for(var i=0; i < objeto.length; i++){
-		cadena += "<div class='ListaTexto' onclick='showItem("+i+");' id='j_"+i+"'>"+objeto[i].nombre+"</div>";
+		cadena += "<div style='vertical-align:middle; line-height:normal; position:relative; left:3%;'><div class='ListaTexto' onclick='showItem("+i+");' id='j_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
 	}
 	document.getElementById('1c').innerHTML=cadena;
 	//document.getElementById('idul').style.height='160%';
@@ -111,7 +111,7 @@ function constructorItems() {
 	console.log(h);
 	h = 280+h;
 	console.log(h);
-	document.getElementById('1c').style.height=h+'px';
+	document.getElementById('1c').style.height=h+60+'px';
 
 }
 

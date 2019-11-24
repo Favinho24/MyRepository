@@ -45,7 +45,7 @@ function Buscar(mensajex){
 				alert("No hay Partidas a la redonda, vuelva mas tarde");
 				location.reload(true);
 			}
-			xd=xd+1;
+			//xd=xd+1;
 			console.log(xd);
 			setTimeout("Buscar("+wea+");", 3000);
 		}else if(objeto.estado == 'You GO'){
@@ -64,7 +64,7 @@ function Buscar(mensajex){
 				alert("Ta has ido AFK, partida cancelada");
 				location.reload(true);
 			}
-			xd1=xd1+1;
+			//xd1=xd1+1;
 			console.log(xd1);
 
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
@@ -107,7 +107,7 @@ function Buscar(mensajex){
 				alert("El otro player está AFK, partida cancelada");
 				location.reload(true);
 			}
-			xd2=xd2+1;
+			//xd2=xd2+1;
 			console.log(xd2);
 
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
@@ -185,7 +185,7 @@ function GenerarEntorno(ac){
 // <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'>
 //-------------------------------------
 
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span><br><br>Armadura: <span id='ArmaduraYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span><br><br>Resistencia Mágica: <span id='RMagYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'> </div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div><div id='chat'><div id='chat00' class='chatLog'><div id='chat01'></div><input id='chat02' placeholder='Escriba un mensaje y pulse Enter' type='text' name='txtchat' onkeypress='InsertChat(event, this.value);'></div></div></div>";
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px;vertical-align: top;'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span><br><br>Armadura: <span id='ArmaduraYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span><br><br>Resistencia Mágica: <span id='RMagYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'><img style='margin-left:20px;vertical-align: middle;' id='attkIcon' width='50px' height='50px' alt='.'></div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div><div id='chat'><div id='chat00' class='chatLog'><div id='chat01'></div><input id='chat02' placeholder='Escriba un mensaje y pulse Enter' type='text' name='txtchat' onkeypress='InsertChat(event, this.value);'></div></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';

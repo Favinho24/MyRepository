@@ -15,7 +15,7 @@
     }
     $database = new DatabaseObject($host, $username, $password, $database);
     $wea='';
-    $vin = $database->query("SELECT name, daño, gc, prob_gc, descrip, Tipo FROM habilidades WHERE name = '".$option."'");
+    $vin = $database->query("SELECT name, daño, gc, prob_gc, descrip, Tipo, icon FROM habilidades WHERE name = '".$option."'");
     $datos = array();
     while ($reg = mysqli_fetch_array($vin)){
       $datos['name']=$reg['name'];
@@ -24,6 +24,7 @@
       $datos['prob_gc']=$reg['prob_gc'];
       $datos['descrip']=$reg['descrip'];
       $datos['tipo']=$reg['Tipo'];
+      $datos['icon']=$reg['icon'];
     }
 
     print_r(json_encode($datos));

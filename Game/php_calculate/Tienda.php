@@ -7,7 +7,7 @@
   require ('../Clases/OTienda.php');
   require ('../DB/DBClass.php');
   require ('../DB/DBVars.php');
-  
+
 
   if (isset($_POST['pj'])) {
     $player=$_POST['pj'];
@@ -20,7 +20,7 @@
 
 	$a = array();
   while ($reg=mysqli_fetch_array($result)) {
-	$T = new Tienda($reg['id'], $reg['name'], $reg['daño'], $reg['gc'], $reg['prob_gc'], $reg['valor'], $reg['descrip'], $reg['Tipo']);
+	$T = new Tienda($reg['id'], $reg['name'], $reg['daño'], $reg['gc'], $reg['prob_gc'], $reg['valor'], $reg['descrip'], $reg['Tipo'], $reg['icon']);
 	$a[] = $T->GetTodo();
  }
 	print_r(json_encode($a, JSON_UNESCAPED_UNICODE));

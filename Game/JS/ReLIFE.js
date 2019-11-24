@@ -33,6 +33,7 @@ function AttacksInfo(attk){
 				InfoAttack = JSON.parse(mensaje3);
 				document.getElementById('attkInfo').innerHTML='<center><b>'+InfoAttack.name+'</b><br><br>Daño: '+InfoAttack.daño+'<br>Golpe Crítico: '+InfoAttack.gc+'<br> Probabilidad GC: '+InfoAttack.prob_gc+'<br>Descripcion: '+InfoAttack.descrip+'<br>Tipo Attk: '+InfoAttack.tipo+'</center>';
 				document.getElementById('attkInfo').classList.add("anim");
+				document.getElementById('attkIcon').src='./resources/icons/'+InfoAttack.icon;
 				//document.getElementById('attkInfo').style = "";
 				//document.getElementById('attkInfo').style.animation.name: levantar;
 				//document.getElementById('attkInfo').style.animation.duration: 4s;

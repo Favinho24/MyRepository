@@ -32,7 +32,7 @@ print_r(json_encode($datosDevolver));
 //==========================================================================================================================
 function cargarArmas(){
 	global $database, $datosDevolver, $idPersonaje;
-	
+
 	$vin=$database->query("SELECT name FROM habilidades WHERE id IN (SELECT idHab FROM `p_h` WHERE `idPj`='".$idPersonaje."');");
 
 	$concat='';
