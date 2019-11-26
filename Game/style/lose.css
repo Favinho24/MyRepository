@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+#loseImg{
+  visibility: hidden;
+}
+.weu {
+  z-index: 4;
+  position: fixed;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+
+}
+.showe {
+  visibility: visible;
+  animation: fadewea 1s forwards;
+}
+@keyframes fadewea {
+  from {background-color: #ffffff;}
+  to {background-color: #666666;}
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  z-index: 5;
+  visibility: hidden;
+  width: 500px;
+  transform: translate(-50%,-50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #555;
+  border-radius: 6px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s forwards;
+animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+}

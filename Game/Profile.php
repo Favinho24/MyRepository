@@ -7,6 +7,7 @@
      <meta charset="utf-8">
      <title>Inside the Shadows</title>
      <link rel="stylesheet" href="./style/contenedor.css">
+     <link rel="stylesheet" href="./style/lose.css">
      <link rel="icon" href="./resources/img/Inside the Shadows ico.ico">
      <link rel="stylesheet" href="./style/frame.css">
 	 <link rel="stylesheet" href="./style/carga.css">
@@ -176,6 +177,6 @@
         <input class="myButton buttonMultiplayer" type="button" name="multiplayer" value="Multiplayer" onclick="Multiplayer();">
         <input class="myButton buttonTienda" type="button" name="tienda" value="Tienda" onclick="Tienda();">
         <input class="myButton buttonExit" type="button" name="exit" value="Exit" onclick="CloseSession();">
-
+</div><div class='weu' id='boy'></div>
    </body>
  </html>
