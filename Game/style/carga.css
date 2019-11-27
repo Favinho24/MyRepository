@@ -34,6 +34,7 @@ animation-delay: .6s;
 left:44px;
 animation-delay: .8s;
 }
+
 @keyframes preloader_1 {
     0% {height:5px;transform:translateY(0px);background:#000000;}
     25% {height:30px;transform:translateY(15px);background:#000000;}
@@ -42,38 +43,29 @@ animation-delay: .8s;
 }
 
 .ListaTexto{
-
-	display: ruby-text;
-	/* position:relative; */
-
-	width: 300px;
-	/* left:3%; */
-	/* margin-bottom:6px; */
-
+	display: unset;
+	width: 350px;
 	font-family:Courier New;
-	font-size: 22px;
+	font-size: 26px;
 }
 .ListaTexto:hover{
 	cursor:pointer;
 }
 
 .flotador {
-
 	position: fixed;
 	display: block;
+  z-index: 3;
 	top: 30%;
-	left: 50%;
+	left: 55%;
 	width: 300px;
   min-height: 280px;
 	height: auto;
 	border: 1px solid black;
-
 }
 .l1 {
-
 	font-family:Courier New;
 	text-align: center;
 	display:block;
 	margin-bottom:10px;
-
 }

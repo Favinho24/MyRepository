@@ -18,7 +18,6 @@ html, body{
     background-color: hsl(212, 40%, 80%);
     justify-content: center;
     align-content: center;
-
   }
 
 .title {
@@ -74,7 +73,6 @@ div ul {
 ul li {
   display: inline-block;
   padding: 1.6%;
-  /* margin-left: 0%; */
 }
 
 li a {
@@ -149,8 +147,7 @@ h1 {
     right: 0;
     left: 0;
     bottom: 0;
-	text-align:center;
-
+	  text-align:center;
 }
 #VidaYo {
 	display: inline-block;

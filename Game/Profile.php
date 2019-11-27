@@ -8,6 +8,7 @@
      <title>Inside the Shadows</title>
      <link rel="stylesheet" href="./style/contenedor.css">
      <link rel="stylesheet" href="./style/lose.css">
+     <link rel="stylesheet" href="./style/moreButton.css">
      <link rel="icon" href="./resources/img/Inside the Shadows ico.ico">
      <link rel="stylesheet" href="./style/frame.css">
 	 <link rel="stylesheet" href="./style/carga.css">
@@ -16,6 +17,7 @@
 	 <script src="./JS/Tienda.js"></script>
    <script src="./JS/ReLIFE.js"></script>
    <script src="./JS/Ranking.js"></script>
+   <script src="./JS/Powa.js"></script>
      <script>
 
      function dateDiff(date) {
@@ -39,15 +41,18 @@
 
 		var Wa_id= '<?php echo $Wa->GetIdCharacter(); ?>';
 		var Wa_nom= '<?php echo $Wa->GetNombre(); ?>';
+    var Wa_gold= '<?php echo $Wa->GetGold(); ?>';
 		var Wa_hp= '<?php echo $Wa->GetHP(); ?>';
 		var Wa_hp_max= '<?php echo $Wa->GetHP_Max(); ?>';
 		var Wa_str= '<?php echo $Wa->GetStr(); ?>';
 		var Wa_arm= '<?php echo $Wa->GetArm(); ?>';
     var Wa_tiempo= '<?php echo $Wa->GetTiempo(); ?>';
 
+    //
 
 		var Wi_id= '<?php echo $Wi->GetIdCharacter(); ?>';
 		var Wi_nom= '<?php echo $Wi->GetNombre(); ?>';
+    var Wi_gold= '<?php echo $Wi->GetGold(); ?>';
 		var Wi_hp= '<?php echo $Wi->GetHP(); ?>';
 		var Wi_hp_max= '<?php echo $Wi->GetHP_Max(); ?>';
 		var Wi_iq= '<?php echo $Wi->GetIQ(); ?>';
@@ -66,6 +71,17 @@
 	}
 
 	function disables() {
+    document.getElementById('WaGold').innerHTML=Wa_gold;
+    document.getElementById('hpWa').innerHTML=Wa_hp;
+    document.getElementById('WaMH').innerHTML=Wa_hp_max;
+    document.getElementById('WaSt').innerHTML=Wa_str;
+    document.getElementById('WaAr').innerHTML=Wa_arm;
+    //-------------------
+    document.getElementById('WiGold').innerHTML=Wi_gold;
+    document.getElementById('hpWi').innerHTML=Wi_hp;
+    document.getElementById('WiMH').innerHTML=Wi_hp_max;
+    document.getElementById('WiIQ').innerHTML=Wi_iq;
+    document.getElementById('WiRM').innerHTML=Wi_rMag;
 		  //console.log(dateDiff(Wa_tiempo));
 
 		  if ((dateDiff(Wa_tiempo)) == 'false'){
@@ -148,27 +164,29 @@
         <div class="frame" id='f1' onclick='seleccionarpj(<?php echo $Wa->GetIdCharacter(); ?>, this.id);'>
           <p>
              Nombre: <?php echo $Wa->GetNombre(); ?> <br><br>
-             Oro: <?php echo $Wa->GetGold(); ?> <br><br>
-             <span id='hpWa'>HP: <?php echo $Wa->GetHP(); ?> </span><br><br>
-			       Vida Máxima: <?php echo $Wa->GetHP_Max(); ?><br><br>
-             Fuerza: <?php echo $Wa->GetStr(); ?> <br><br>
-             Armadura: <?php echo $Wa->GetArm(); ?>
+             Oro: <span id='WaGold'></span><br><br>
+             HP: <span id='hpWa'></span><br><br>
+			       Vida Máxima: <span id='WaMH'></span>  <a id='moreWaH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a><br><br>
+             Fuerza: <span id='WaSt'></span> <a id='moreWaF' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a><br><br>
+             Armadura: <span id='WaAr'></span> <a id='moreWaA' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a>
           </p>
             <img style="margin:auto;" src="./resources/img/Warrior.png" alt="Warrior" height="120" width="100">
-            <p id='demoWa'></p>
+            <p id='demoWa'></p><br><br>
+            <div style="position: absolute; top: 46%; right: 2%;width: 10%; height: 14%; text-align: center;"><input type="button" name='warrior' value="Health" onclick='Salud(this.name, <?php echo $Wa->GetIdCharacter(); ?>);' class="hpButton"></div>
         </div>
         <br>
         <div class="frame" id='f2' onclick='seleccionarpj(<?php echo $Wi->GetIdCharacter(); ?>, this.id);'>
           <p>
              Nombre: <?php echo $Wi->GetNombre(); ?> <br><br>
-             Oro: <?php echo $Wi->GetGold(); ?> <br><br>
-             <span id='hpWi'>HP: <?php echo $Wi->GetHP(); ?> </span><br><br>
-			       Vida Máxima: <?php echo $Wi->GetHP_Max(); ?><br><br>
-             Inteligencia: <?php echo $Wi->GetIQ(); ?><br><br>
-             Resistencia Mágica: <?php echo $Wi->GetRMag(); ?>
+             Oro: <span id='WiGold'></span><br><br>
+             HP: <span id='hpWi'></span><br><br>
+			       Vida Máxima: <span id='WiMH'></span> <a id='moreWiH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a><br><br>
+             Inteligencia: <span id='WiIQ'></span> <a id='moreWiI' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a><br><br>
+             Resistencia Mágica: <span id='WiRM'></span> <a id='moreWiR' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a>
           </p>
           <img style="margin:auto;" src="./resources/img/Wizard.png" alt="Wizard" height="120" width="100">
-          <p id='demoWi'></p>
+          <p id='demoWi'></p><br><br>
+          <div style="position: absolute; top: 46%; right: 2%;width: 10%; height: 14%; text-align: center;"><input type="button" name='wizard' value="Health" onclick='Salud(this.name, <?php echo $Wi->GetIdCharacter(); ?>);' class="hpButton"></div>
      </div>
 
         <br><br><br><br>

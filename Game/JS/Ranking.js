@@ -1,10 +1,15 @@
-function Ranking(){
+function Ranking() {
+  PCarga();
+  setTimeout(function(){Top();}, 2700);
+}
+function Top(){
     if(!estado4){
-        ajax4("POST","./php_calculate/Ranking.php","","Ranking()");
+        ajax4("POST","./php_calculate/Ranking.php","","Top()");
         return;
     }else{
         estado = false;
 		var cadena='';
+      PCarga();
 		//var ranking = JSON.parse(mensaje4);
 
 		var nom = mensaje4.split("+")[0];

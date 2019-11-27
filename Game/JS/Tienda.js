@@ -58,7 +58,7 @@ function constructorNombres() {
 	//document.getElementById('1c').style.height='auto';
 	var cadena = "<div class='flotador' id='flot1'></div>";
 	for(var i=0; i < objeto.length; i++){
-		cadena += "<div style='vertical-align:middle; line-height:normal; position:relative; left:3%;'><div class='ListaTexto' onclick='showI("+i+");' id='h_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
+		cadena += "<div style='display:flex; line-height:normal; position: relative; left: 3%; align-items: center;'><div class='ListaTexto' onclick='showI("+i+");' id='h_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
 	}
 	document.getElementById('1c').innerHTML=cadena;
 }
@@ -101,7 +101,7 @@ function constructorItems() {
 
 	var cadena = "<div class='flotador' id='flot8'></div>";
 	for(var i=0; i < objeto.length; i++){
-		cadena += "<div style='vertical-align:middle; line-height:normal; position:relative; left:3%;'><div class='ListaTexto' onclick='showItem("+i+");' id='j_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
+		cadena += "<div style='display:flex; line-height:normal; position: relative; left: 3%; align-items: center;'><div class='ListaTexto' onclick='showItem("+i+");' id='j_"+i+"'>"+objeto[i].nombre+"</div><img style='position:relative; display:inline-block; left:2%' src='./resources/icons/"+objeto[i].icon+"' width='50px' height='50px' alt='*img*'></div>";
 	}
 	document.getElementById('1c').innerHTML=cadena;
 	//document.getElementById('idul').style.height='160%';
@@ -216,6 +216,29 @@ function ajax4(metodo, direccion, parametros,fun){
     ajax_5.send(parametros);
     return;
 }
+var mensaje5;
+var estado5 = false;
+function ajax5(metodo, direccion, parametros,fun){
+    mensaje5= "";
+    estado5 = true;
+
+    ajax_6 = objetoAjax();
+    ajax_6.open(metodo, direccion, true);
+    ajax_6.onreadystatechange = function() {
+        if (ajax_6.readyState == 4){
+            mensaje5 = (ajax_6.responseText)
+            if(mensaje5 == "error"){
+                alert("PHP - fallo 5");
+                return;
+            }
+            eval(fun);
+        }
+    }
+    ajax_6.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    ajax_6.send(parametros);
+    return;
+}
+
 
 function objetoAjax(){
     var xmlhttp = false;

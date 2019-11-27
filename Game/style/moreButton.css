@@ -1,0 +1,48 @@
+.motto {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:42px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:8px 11px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.motto:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.motto:active {
+	position:relative;
+	top:1px;
+}
+
+.hpButton {
+	box-shadow: 5px 4px 0px 0px #6b8059;
+	background:linear-gradient(to bottom, #94b83f 5%, #9bb368 100%);
+	background-color:#94b83f;
+	border-radius:18px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#474747;
+	font-family:Arial;
+	font-size:16px;
+	padding:7px 4px;
+	text-decoration:none;
+	text-shadow:0px 2px 0px #86ae47;
+}
+.hpButton:hover {
+	background:linear-gradient(to bottom, #9bb368 5%, #94b83f 100%);
+	background-color:#9bb368;
+}
+.hpButton:active {
+	position:relative;
+	top:1px;
+}
