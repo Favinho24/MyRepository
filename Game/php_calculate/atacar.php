@@ -65,6 +65,30 @@
 
 		global $database, $idp2, $option, $idp1, $idLog;
 
+		$adds='';
+		$player='';
+		$bool='';
+		$vin=$database->query("SELECT adds FROM vinculo WHERE idLog='".$idLog."';");
+		while ($reg=mysqli_fetch_array($vin)) {
+			$adds=$reg['adds'];
+		}
+		if ($adds <> '') {
+			$player=(explode('-', $adds))[0];
+			$adds=(explode('-', $adds))[1];
+			if ($player == $idp2 && $adds == 'true') {
+				$database->query("UPDATE vinculo SET adds='' WHERE idLog='".$idLog."';");
+				$bool='true';
+			}else {
+				$bool='false';
+			}
+		}else {
+			$bool='false';
+		}
+
+
+
+
+
 		$vin=$database->query("SELECT name, daño, gc, prob_gc, Tipo FROM habilidades WHERE name='".$option."';");
 
 		global $daño;
@@ -148,7 +172,11 @@
 		if ($daño < 0) {
 			$daño=0;
 		}
-		echo 'hola';
+		if ($bool=='true') {
+			//echo "el daño real es: ".$daño;
+			$daño=($daño/2);
+		}
+		//echo 'hola';
 		if (($hp - $daño) <= 0) {
 			echo ' oponente muerto usando '.$neim;
 			$database->query("UPDATE pj SET hp=hp-".$daño." WHERE id=".$idp2.";");

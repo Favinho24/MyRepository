@@ -166,9 +166,9 @@
              Nombre: <?php echo $Wa->GetNombre(); ?> <br><br>
              Oro: <span id='WaGold'></span><br><br>
              HP: <span id='hpWa'></span><br><br>
-			       Vida Máxima: <span id='WaMH'></span>  <a id='moreWaH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a><br><br>
-             Fuerza: <span id='WaSt'></span> <a id='moreWaF' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a><br><br>
-             Armadura: <span id='WaAr'></span> <a id='moreWaA' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a>
+			       Vida Máxima: <span id='WaMH'></span>  <a id='moreWaH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a> $7<br><br>
+             Fuerza: <span id='WaSt'></span> <a id='moreWaF' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a> $7<br><br>
+             Armadura: <span id='WaAr'></span> <a id='moreWaA' class="motto" onclick="MottoPowa(this.id, <?php echo $Wa->GetIdCharacter(); ?>);">+</a> $7
           </p>
             <img style="margin:auto;" src="./resources/img/Warrior.png" alt="Warrior" height="120" width="100">
             <p id='demoWa'></p><br><br>
@@ -180,9 +180,9 @@
              Nombre: <?php echo $Wi->GetNombre(); ?> <br><br>
              Oro: <span id='WiGold'></span><br><br>
              HP: <span id='hpWi'></span><br><br>
-			       Vida Máxima: <span id='WiMH'></span> <a id='moreWiH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a><br><br>
-             Inteligencia: <span id='WiIQ'></span> <a id='moreWiI' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a><br><br>
-             Resistencia Mágica: <span id='WiRM'></span> <a id='moreWiR' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a>
+			       Vida Máxima: <span id='WiMH'></span> <a id='moreWiH' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a> $7<br><br>
+             Inteligencia: <span id='WiIQ'></span> <a id='moreWiI' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a> $7<br><br>
+             Resistencia Mágica: <span id='WiRM'></span> <a id='moreWiR' class="motto" onclick="MottoPowa(this.id, <?php echo $Wi->GetIdCharacter(); ?>);">+</a> $7
           </p>
           <img style="margin:auto;" src="./resources/img/Wizard.png" alt="Wizard" height="120" width="100">
           <p id='demoWi'></p><br><br>

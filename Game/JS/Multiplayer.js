@@ -47,12 +47,15 @@ function Buscar(mensajex){
 				alert("No hay Partidas a la redonda, vuelva mas tarde");
 				location.reload(true);
 			}
-			//xd=xd+1;
+			xd=xd+1;
 			console.log(xd);
 			setTimeout("Buscar("+wea+");", 3000);
 		}else if(objeto.estado == 'You GO'){
 			document.getElementById('inputA').disabled=false;
 			document.getElementById('huirButton').disabled=false;
+      document.getElementById('reinforce').disabled=false;
+      document.getElementById('fullHP').disabled=false;
+      document.getElementById('partHP').disabled=false;
 			if (bo){
 				Enemy(wea, pj);
 				bo=false;
@@ -66,7 +69,7 @@ function Buscar(mensajex){
 				alert("Ta has ido AFK, partida cancelada");
 				location.reload(true);
 			}
-			//xd1=xd1+1;
+			xd1=xd1+1;
 			console.log(xd1);
 
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
@@ -100,6 +103,9 @@ function Buscar(mensajex){
 		}else if(objeto.estado == 'Found'){
 			document.getElementById('inputA').disabled=true;
 			document.getElementById('huirButton').disabled=true;
+      document.getElementById('reinforce').disabled=true;
+			document.getElementById('fullHP').disabled=true;
+      document.getElementById('partHP').disabled=true;
 			if (bo){
 				Enemy(wea, pj);
 				bo=false;
@@ -112,7 +118,7 @@ function Buscar(mensajex){
 				alert("El otro player está AFK, partida cancelada");
 				location.reload(true);
 			}
-			//xd2=xd2+1;
+			xd2=xd2+1;
 			console.log(xd2);
 
 			document.getElementById('VidaElID').style.width = calcItemVida(objeto.vidaEnemigo, 130)+'px';
@@ -204,12 +210,13 @@ function GenerarEntorno(ac){
 // <input type='button' value='Volver a Mi Perfil' onclick='Lobby();'>
 //-------------------------------------
 
-	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px;vertical-align: top;'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>Vida<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Fuerza: <span id='FuerzaYo'></span><br><br>Armadura: <span id='ArmaduraYo'></span></div><br><div style='display:block;' id='iqtxt'>Inteligencia: <span id='IQYo'></span><br><br>Resistencia Mágica: <span id='RMagYo'></span></div><br><div style='display:block;'><input type='button' value='Atacar' name='atacar' onclick='atacar();' id='inputA'><select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Huir' onclick='Huir();'><img style='margin-left:20px;vertical-align: middle;' id='attkIcon' width='50px' height='50px' alt='.'></div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div></div><div id='chat'><div id='chat00' class='chatLog'><div id='chat01'></div><input id='chat02' placeholder='Escriba un mensaje y pulse Enter' type='text' name='txtchat' onkeypress='InsertChat(event, this.value);'></div></div></div><div class='popup' align='center' style='position:relative; height:0px'><div class='popuptext' id='myPopup' onclick='Lobby();'><img id= 'imgSatania' src='./resources/img/satania-lose.png' width='500px' height='500px'></div></div>";
+	document.getElementById('1c').innerHTML="<div id='rival'><h3 style='text-align:center;' id='suPersonaje'>''</h3><div style='display:inline-block; padding: 20px;'><img src='./resources/img/rival.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>HP<span id='VidaEl'><span class='barraEl' id='VidaElID'></span></span></div><br></div></div><div id='log'><div class='wei' id='logPanel' style='overflow:auto;'></div></div><div id='yo'><h3 style='text-align:center;' id='miPersonaje'>''</h3><div style='display:inline-block; margin-bottom:15px;padding:20px;vertical-align: top;'><img src='./resources/img/sagiri.png' height=140px></div><div style='display:inline-block;'><div style='display:block;'>HP<span id='VidaYo'><span class='barraYo' id='VidaYoID'><p id='miVida' style='display:contents;'></p></span></span></div><br><div style='display:block;' id='strtxt'>Strength: <span id='FuerzaYo'></span><br><br>Armour: <span id='ArmaduraYo'></span><br><br>Gold: <span id='OroYoWa'></span></div><br><div style='display:block;' id='iqtxt'>IQ: <span id='IQYo'></span><br><br>Magic Resistance: <span id='RMagYo'></span><br><br>Oro: <span id='OroYoWi'></span></div><br><div style='display:block;'><input type='button' value='Attack' name='atacar' onclick='atacar();' id='inputA'> <select id='selectAtack' onclick='InfoAttacks();'>"+ac+"</select> <input type='button' id='huirButton' value='Run Away' onclick='Huir();'><img style='margin-left:20px;vertical-align: middle;' id='attkIcon' width='50px' height='50px' alt='.'></div><br></div><div style='display:inline-block;width: 240px;height: auto;border:1px solid black;left: 20px;position: relative;' id='attkInfo'></div><br><div style='display:inline-block; margin-left:148px;'><input type='button' id='partHP' value='Restore 1/4 HP' onclick='PartHP();'> <input type='button' id='fullHP' value='Restore Full HP' onclick='FullHP();'> <input type='button' id='reinforce' value='Reinforce' onclick='Reinforce();'></div></div><div id='chat'><div id='chat00' class='chatLog'><div id='chat01'></div><input id='chat02' placeholder='Write a messaje and hit Enter' type='text' name='txtchat' onkeypress='InsertChat(event, this.value);'></div></div></div><div class='popup' align='center' style='position:relative; height:0px'><div class='popuptext' id='myPopup' onclick='Lobby();'><img id= 'imgSatania' src='./resources/img/satania-lose.png' width='500px' height='500px'></div></div>";
 	if (Wa_id==pj) {
 		document.getElementById('miPersonaje').innerHTML=Wa_nom;
 		document.getElementById('VidaYoID').style.width = calcItemVida(Wa_hp+'/'+Wa_hp_max, 400) + 'px';
 		document.getElementById('miVida').innerHTML = Wa_hp+'/'+Wa_hp_max;
 		document.getElementById('FuerzaYo').innerHTML=Wa_str;
+    document.getElementById('OroYoWa').innerHTML=Wa_gold;
 		document.getElementById('iqtxt').innerHTML='';
 		document.getElementById('ArmaduraYo').innerHTML=Wa_arm;
 
@@ -219,6 +226,7 @@ function GenerarEntorno(ac){
 		document.getElementById('miVida').innerHTML = Wi_hp+'/'+Wi_hp_max;
 		document.getElementById('strtxt').innerHTML='';
 		document.getElementById('IQYo').innerHTML=Wi_iq;
+    document.getElementById('OroYoWi').innerHTML=Wi_gold;
 		document.getElementById('RMagYo').innerHTML=Wi_rMag;
 	}
 
@@ -268,6 +276,13 @@ function Enemy(csa, go){
     }
 }
 
+function pjactual(){
+  if (Wa_id==pj){
+    return 'Wa';
+  }else{
+    return 'Wi';
+  }
+}
 
 
 function atacar(){
@@ -278,7 +293,7 @@ function atacar(){
         return;
     }else{
         estado2 = false;
-		//console.log(mensaje2);
+		//alert(mensaje2);
 		//log =mensaje2;
 		setTimeout("Buscar("+wea+");", 1);
     }
@@ -290,6 +305,88 @@ function Huir(){
     }else{
         estado2 = false;
 		console.log(mensaje2);
+		//setTimeout("Buscar("+wea+");", 1);
+    }
+}
+function PartHP(){
+  if (pjactual() == 'Wa') {
+    if ((document.getElementById('OroYoWa').innerHTML) < 50) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }else {
+    if ((document.getElementById('OroYoWi').innerHTML) < 50) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }
+
+
+	if(!estado2){
+        ajax2("POST","./php_calculate/partHP.php","idpj="+coso+"&idLog="+wea,"PartHP()");
+        return;
+    }else{
+        estado2 = false;
+        if (pjactual() == 'Wa') {
+          document.getElementById('OroYoWa').innerHTML=mensaje2;
+        }else {
+          document.getElementById('OroYoWi').innerHTML=mensaje2;
+        }
+		//setTimeout("Buscar("+wea+");", 1);
+    }
+}
+function FullHP(){
+  if (pjactual() == 'Wa') {
+    if ((document.getElementById('OroYoWa').innerHTML) < 200) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }else {
+    if ((document.getElementById('OroYoWi').innerHTML) < 200) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }
+
+	if(!estado2){
+        ajax2("POST","./php_calculate/fullHP.php","idpj="+coso+"&idLog="+wea,"FullHP()");
+        return;
+    }else{
+        estado2 = false;
+        console.log(mensaje2);
+    if (pjactual() == 'Wa') {
+      document.getElementById('OroYoWa').innerHTML=mensaje2;
+    }else {
+      document.getElementById('OroYoWi').innerHTML=mensaje2;
+    }
+
+		//setTimeout("Buscar("+wea+");", 1);
+    }
+}
+
+function Reinforce(){
+  if (pjactual() == 'Wa') {
+    if ((document.getElementById('OroYoWa').innerHTML) < 60) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }else {
+    if ((document.getElementById('OroYoWi').innerHTML) < 60) {
+      alert('No es posible la Compra, no hay suficiente dinero');
+      return;
+    }
+  }
+
+	if(!estado2){
+        ajax2("POST","./php_calculate/reinforce.php","idpj="+coso+"&idLog="+wea,"Reinforce()");
+        return;
+    }else{
+        estado2 = false;
+        if (pjactual() == 'Wa') {
+          document.getElementById('OroYoWa').innerHTML=mensaje2;
+        }else {
+          document.getElementById('OroYoWi').innerHTML=mensaje2;
+        }
 		//setTimeout("Buscar("+wea+");", 1);
     }
 }

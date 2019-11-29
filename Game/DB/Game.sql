@@ -207,7 +207,7 @@ INSERT INTO `Usuario` (`id`, `nombre`, `pass`, `photo`) VALUES
 (35, 'Tomas', '25f9e794323b453885f5181f1b624d0b', NULL),
 (36, 'favinho', '25f9e794323b453885f5181f1b624d0b', NULL),
 (39, 'FavioC', '25f9e794323b453885f5181f1b624d0b', NULL),
-(42, 'weiaxd', '25f9e794323b453885f5181f1b624d0b', NULL);
+(42, 'weiaxd', '25f9e794323b453885f5181f1b624d0b', NULL),
 (43, 'Fernandito4122', '25d55ad283aa400af464c76d713c07ad', NULL);
 
 --
@@ -235,6 +235,7 @@ CREATE TABLE IF NOT EXISTS `vinculo` (
   `idPj2` int(11) NOT NULL,
   `UsuarioTurno` int(11) NOT NULL,
   `log` text DEFAULT NULL,
+  `adds` text DEFAULT NULL,
   PRIMARY KEY (`idLog`)
 );
 
