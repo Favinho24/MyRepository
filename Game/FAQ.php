@@ -31,10 +31,41 @@
         <ul class="list">
           <li class="row"><b>Como jugar?</b> <br>
             <p style='text-align:justify'>
-            Simplemente se Pide la creacion de una cuenta, para registro del jugador, y a continuacion se crearán automaticamente 2 Characters
-            Uno será un Warrior y el otro un Wizzard.<br>El modo en que el juego está construido no permite crear mas personajes, solamente se centra en el
-            dessarrollo de los personajes por defecto, estos cuentan con un set de características, alqgunas compartidas, otras no. Existe tambien un menu
-            de habilidades por obtener para poder retrse online con otros jugadores. Y un pequeño inventario que lista las propiedades de cada personaje.
+              Simplemente se pide la creacion de una cuenta, para registro del jugador, y a continuacion se crearán automaticamente 2 Characters Uno será un Warrior y el otro un Wizzard.
+              El modo en que el juego está construido no permite crear mas personajes, solamente se centra en el dessarrollo de los personajes por defecto, estos cuentan con un set de características, algunas compartidas, otras no. Existe tambien un menu de habilidades por obtener para poder retarse online con otros jugadores. Y un pequeño inventario que lista las propiedades de cada personaje.
+              Debes de entender que no puedes ir de batalla en batalla a lo loc@ ya que el daño que recibas no se curara automaticamente por lo que debes de saber bien como invertir tu oro y si es necesario el curarte o prefieres hacerte mas fuerte.
+              Recuerda que cuentas con una vida maxima lo que se traduce como tu potencial maximo por lo que si no lo aumentas tu vida tampoco lo hara. Recuerda la fuerza bruta no siempre gana
+            </p>
+          </li>
+          <li class="row"><b>Perfil?</b><br>
+            <p style='text-align:justify'>
+              El perfil es donde se alojaran tu paladin y tu hechicero donde encontraras su Oro, HP, VM (vida maxima), etc. En donde podras magnificar el poder de ambos a tu antojo y te permitira destruir a tus enemigos con mas facilidad.
+              Aqui se encuentra la poción Health la cual con un coste de 100 de oro te permite recuperar toda tu vitalidad para estar preparado para la proxima batalla
+              <ol class="list" style="list-style: hiragana">
+                <li class="row">
+                <h4>Warrior:</h4>
+                Estos Characters ademes de contar con su Oro y su HP por separado tambien cuantan con distintas habilidades que en el caso del warrior son la Fuerza y la Armadura.
+                En el caso de la Fuerza servira para cuando se utilizan Items tipo Arma lo que magnificara el poder de las mismas y su efectividad en combate.
+                Pero por su parte la Armadura debe de tomarse en cuenta ya que esta permitira que los ataques enemigos tengan una menor posibilidad de acertar un daño significativo, ya saben el mejor ataque es una buena defensa.
+                </li>
+                <li class="row">
+                <h4>Wizzard:</h4>
+                En el caso del Wizzard cuenta con el mismo funcionamiento que el Warrior para el oro y HP, pero este cuenta con Inteligencia y Resistencia Magica lo que le permite desenmarañar los misterios del universo y controlar el poder mistico del mismo.
+                La inteligencia le brinda un entendimiento puro del mundo y su energia lo que le permite controlar a la perfecion los Items tipo hechizo haciendo que los puntos en esta habilidad enaltescan el daño que estos pueden causar.
+                Para potegerse el Wizzard emplea su Resistencia magica lo que le permite endurecer su cuerpo haciendo que el daño sea menor y teniendo una defenza casi impenetrable, aunque claro esto le es agotador por lo que no siempre podra evitar todo el daño.
+                </li>
+                <li class="row">
+                  <h4>Batalla:</h4>
+                  Aqui podras encontrar frente a frente con tu oponente pudiendo optar por atacar con tu diversos items de tu inventario, teniendo sus estadisticas para poder decidir el mejor item o estrategia que usaras.
+                  Claramente no solo debes de atacar sin pensar y deberas de tener cuidado con tu oro ya que a lo largo de la batalla podras usarlo para conseguir pociones que restauraran tu vida teniendo un coste de 200 para poder cargar toda tu vida o 100 para 1/4 de ella.
+                  Si la restauracion no es lo tuyo por un coste de 60 de oro podras conseguir un Reinforce lo que aumentara tu armadura momentaneamente y te permitira resistir los ataques que recibas con mayor facilidad.
+                  Aunque claro tambien puedes huir (COBARDE!!!!!)
+                  </li>
+                  <li class="row">
+                  <h4>Muerte:</h4>
+              	Si mueres en batalla debereas de reponerte para la siguente batalla en un periodo de una hora despues de tu derrota por lo que recuerda huir no es tan malo (Gallina)
+                </li>
+              </ol>
             </p>
           </li>
           <li class="row"><b>Como conseguir oro?</b><br>

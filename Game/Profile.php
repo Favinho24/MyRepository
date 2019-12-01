@@ -145,7 +145,7 @@
 
      </script>
    </head>
-   <body onload="disables();">
+   <body onbeforeunload="Unload();">
      <div class="topBar"><p class="title">Inside the Shadows</p><img id="img1" src="./resources/img/Inside the Shadows.png" alt="RPG Game logo"></div>
      <div class="navBar">
        <ul id='ulNav' id='idul'>
