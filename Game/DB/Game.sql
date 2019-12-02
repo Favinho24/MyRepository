@@ -134,6 +134,15 @@ CREATE TRIGGER `insertarEnPartidas` AFTER INSERT ON `pj` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `VidaMax` BEFORE UPDATE ON `pj`
+ FOR EACH ROW BEGIN
+	if new.hp > old.hp_max THEN
+    	set new.hp = old.hp_max;
+    end if;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 

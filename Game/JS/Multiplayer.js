@@ -185,9 +185,6 @@ function Enter(a){
   }
 }
 
-function Unload(){
-    alert('te vai');
-}
 
 function InsertChat(e, texto){
   if (Enter(e) == "true"){
